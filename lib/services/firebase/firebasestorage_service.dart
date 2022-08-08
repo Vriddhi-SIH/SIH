@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:quizzle/firebase/firebase_configs.dart';
-import 'package:quizzle/utils/utils.dart';
+import 'package:sih_2022/firebase/firebase_configs.dart';
+import 'package:sih_2022/utils/utils.dart';
 
 class FireBaseStorageService extends GetxService {
   Future<String?> getImage(String? imageName) async {

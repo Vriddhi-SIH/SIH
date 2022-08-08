@@ -1,4 +1,4 @@
-# quizzle
+# sih_2022
 
 A new Flutter project.
 

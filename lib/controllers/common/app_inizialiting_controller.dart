@@ -1,5 +1,5 @@
 // import 'package:get/get.dart';
-// import 'package:quizzle/screens/screens.dart';
+// import 'package:sih_2022/screens/screens.dart';
 
 // class AppInizialitingController extends GetxController {
 //   @override

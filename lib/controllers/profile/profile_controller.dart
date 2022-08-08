@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/firebase/references.dart';
-import 'package:quizzle/models/models.dart' show QuizPaperModel, RecentTest;
-import 'package:quizzle/services/firebase/firebasestorage_service.dart';
-import 'package:quizzle/utils/logger.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/firebase/references.dart';
+import 'package:sih_2022/models/models.dart' show QuizPaperModel, RecentTest;
+import 'package:sih_2022/services/firebase/firebasestorage_service.dart';
+import 'package:sih_2022/utils/logger.dart';
 
 class ProfileController extends GetxController {
   @override
@@ -30,7 +30,8 @@ class ProfileController extends GetxController {
             await quizePaperFR.doc(test.paperId).get();
         final quizPaper = QuizPaperModel.fromSnapshot(quizPaperSnaphot);
 
-        final url =  await Get.find<FireBaseStorageService>().getImage(quizPaper.title);
+        final url =
+            await Get.find<FireBaseStorageService>().getImage(quizPaper.title);
         test.papername = quizPaper.title;
         test.paperimage = url;
       }

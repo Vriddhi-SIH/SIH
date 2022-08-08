@@ -1,10 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/configs/configs.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/screens/screens.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/configs/configs.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/screens/screens.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 import 'answer_check_screen.dart';
 

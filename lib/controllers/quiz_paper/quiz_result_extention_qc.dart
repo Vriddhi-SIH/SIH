@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/firebase/references.dart';
-import 'package:quizzle/services/notification/notification_service.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/firebase/references.dart';
+import 'package:sih_2022/services/notification/notification_service.dart';
 
 extension QuizeResult on QuizController {
   int get correctQuestionCount => allQuestions
@@ -56,7 +56,8 @@ extension QuizeResult on QuizController {
     Get.find<NotificationService>().showQuizCompletedNotification(
         id: 1,
         title: quizPaperModel.title,
-        body:  'You have just got $points points for ${quizPaperModel.title} -  Tap here to view leaderboard' ,
+        body:
+            'You have just got $points points for ${quizPaperModel.title} -  Tap here to view leaderboard',
         imageUrl: quizPaperModel.imageUrl,
         payload: json.encode(quizPaperModel.toJson()));
     navigateToHome();

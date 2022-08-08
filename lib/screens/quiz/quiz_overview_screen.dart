@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/configs/configs.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/configs/configs.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 class QuizOverviewScreen extends GetView<QuizController> {
   const QuizOverviewScreen({Key? key}) : super(key: key);

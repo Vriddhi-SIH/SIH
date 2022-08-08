@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizzle/configs/configs.dart';
+import 'package:sih_2022/configs/configs.dart';
 
 enum AnswerStatus { correct, wrong, answered, notanswered }
 

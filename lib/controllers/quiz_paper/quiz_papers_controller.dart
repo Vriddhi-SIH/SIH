@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/controllers/auth_controller.dart';
-import 'package:quizzle/firebase/references.dart';
-import 'package:quizzle/models/models.dart' show QuizPaperModel;
-import 'package:quizzle/screens/screens.dart' show QuizeScreen;
-import 'package:quizzle/services/firebase/firebasestorage_service.dart';
-import 'package:quizzle/utils/logger.dart';
+import 'package:sih_2022/controllers/auth_controller.dart';
+import 'package:sih_2022/firebase/references.dart';
+import 'package:sih_2022/models/models.dart' show QuizPaperModel;
+import 'package:sih_2022/screens/screens.dart' show QuizeScreen;
+import 'package:sih_2022/services/firebase/firebasestorage_service.dart';
+import 'package:sih_2022/utils/logger.dart';
 
 class QuizPaperController extends GetxController {
   @override
@@ -35,13 +35,15 @@ class QuizPaperController extends GetxController {
     }
   }
 
-  void navigatoQuestions({required QuizPaperModel paper, bool isTryAgain = false}) {
+  void navigatoQuestions(
+      {required QuizPaperModel paper, bool isTryAgain = false}) {
     AuthController _authController = Get.find();
 
     if (_authController.isLogedIn()) {
       if (isTryAgain) {
         Get.back();
-        Get.offNamed(QuizeScreen.routeName, arguments: paper, preventDuplicates: false);
+        Get.offNamed(QuizeScreen.routeName,
+            arguments: paper, preventDuplicates: false);
       } else {
         Get.toNamed(QuizeScreen.routeName, arguments: paper);
       }

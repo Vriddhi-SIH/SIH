@@ -1,4 +1,3 @@
-export 'splash/splash.dart';
 export 'onboarding/app_indroduction_screen.dart';
 export 'auth_and_profile/login_screen.dart';
 export 'auth_and_profile/profile_screen.dart';

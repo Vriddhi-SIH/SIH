@@ -1,8 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:easy_separator/easy_separator.dart';
 import 'package:flutter/material.dart';
-import 'package:quizzle/configs/configs.dart';
-import 'package:quizzle/models/models.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/configs/configs.dart';
+import 'package:sih_2022/models/models.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 class RecentQuizCard extends StatelessWidget {
   const RecentQuizCard({Key? key, required this.recentTest}) : super(key: key);

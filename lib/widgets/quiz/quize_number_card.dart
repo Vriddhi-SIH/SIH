@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quizzle/configs/configs.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/configs/configs.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 class QuizNumberCard extends StatelessWidget {
   const QuizNumberCard({

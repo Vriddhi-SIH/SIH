@@ -1,17 +1,28 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/configs/configs.dart';
-import 'package:quizzle/controllers/auth_controller.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/configs/configs.dart';
+import 'package:sih_2022/controllers/auth_controller.dart';
+import 'package:sih_2022/screens/auth_and_profile/singin_page.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
-class LoginScreen extends GetView<AuthController> {
-  static const String routeName = '/login';
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key? key}) : super(key: key);
+  static String routeName = '/login';
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final controller = Get.put(AuthController());
+  bool onchanged = true;
+  late Widget login = childLogin();
 
   @override
   Widget build(BuildContext context) {
-    bool onchanged = true;
-    late Widget login = childLogin();
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Container(
@@ -48,8 +59,10 @@ class LoginScreen extends GetView<AuthController> {
                   children: [
                     InkWell(
                       onTap: () {
-                        login = childLogin();
-                        onchanged = true;
+                        setState(() {
+                          login = childLogin();
+                          onchanged = true;
+                        });
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -79,10 +92,11 @@ class LoginScreen extends GetView<AuthController> {
                     ),
                     InkWell(
                       onTap: () {
-                        setState() {
+                        setState(() {
                           onchanged = false;
                           login = parentLogin();
-                        }
+                        });
+                        setState(() {});
                       },
                       child: Container(
                         width: 176,
@@ -124,7 +138,9 @@ class LoginScreen extends GetView<AuthController> {
                     style: TextButton.styleFrom(
                         minimumSize: Size(360, 60),
                         backgroundColor: Colors.red),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {});
+                    },
                     child: Icon(
                       Icons.home,
                       color: Colors.white,
@@ -138,9 +154,15 @@ class LoginScreen extends GetView<AuthController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Not Registered Yet ?"),
+                    Text(
+                      "Not Registered Yet ?",
+                    ),
                     InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            Get.offAllNamed(SigninPage.routeName);
+                          });
+                        },
                         child: Text(
                           "Create Account",
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -151,6 +173,8 @@ class LoginScreen extends GetView<AuthController> {
                   height: 40,
                   width: 120,
                   child: ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
                     onPressed: () {
                       controller.siginInWithGoogle();
                     },

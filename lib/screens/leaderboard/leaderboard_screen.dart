@@ -2,10 +2,10 @@ import 'package:easy_separator/easy_separator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/firebase/firebase_configs.dart';
-import 'package:quizzle/models/models.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/firebase/firebase_configs.dart';
+import 'package:sih_2022/models/models.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 class LeaderBoardScreen extends GetView<LeaderBoardController> {
   LeaderBoardScreen({Key? key}) : super(key: key) {

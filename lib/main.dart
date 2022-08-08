@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 
 Future<void> initFireBase() async {
   await Firebase.initializeApp(
-    name: 'quizzle-demo',
+    name: 'sih_2022-demo',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 }

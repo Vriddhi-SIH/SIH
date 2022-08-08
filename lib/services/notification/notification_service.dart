@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:quizzle/models/models.dart';
-import 'package:quizzle/screens/screens.dart' show LeaderBoardScreen;
-import 'package:quizzle/utils/logger.dart';
+import 'package:sih_2022/models/models.dart';
+import 'package:sih_2022/screens/screens.dart' show LeaderBoardScreen;
+import 'package:sih_2022/utils/logger.dart';
 
 class NotificationService extends GetxService {
   final _notifications = FlutterLocalNotificationsPlugin();
@@ -80,7 +80,6 @@ class NotificationService extends GetxService {
                 presentAlert: true, presentBadge: true, presentSound: true)),
         payload: payload);
   }
-
 
   Future<String?> _downloadAndSaveFile(String url, String fileName) async {
     try {

@@ -71,6 +71,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'quizx-fb763.appspot.com',
     iosClientId:
         '647627347924-kbbtgj0ntatj9nh6avl8psk6de534src.apps.googleusercontent.com',
-    iosBundleId: 'com.codefox.quizzle',
+    iosBundleId: 'com.codefox.sih_2022',
   );
 }

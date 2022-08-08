@@ -3,10 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'package:quizzle/configs/configs.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/screens/auth_and_profile/profile_screen.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/configs/configs.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/screens/auth_and_profile/profile_screen.dart';
+import 'package:sih_2022/screens/home/article_screen.dart/article_page.dart';
+import 'package:sih_2022/screens/home/story_screen.dart';
+import 'package:sih_2022/screens/timeline/timeline.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -29,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
 
       case 2:
+        currentWidget = ArticlePage();
         break;
       case 3:
         Get.lazyPut(() => ProfileController());
@@ -38,9 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget homepage3() {
-    String name = "Ayush";
-
     return Material(
+        color: Colors.white,
         child: Container(
             height: MediaQuery.of(context).size.height,
             margin: EdgeInsets.fromLTRB(18, 20, 18, 0),
@@ -51,12 +54,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Hello Little 👋 ",
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Hello Little 👋 ",
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => TimeLinePage()));
+                          },
+                          child: Icon(
+                            Icons.calendar_month,
+                            size: 40,
+                          )),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -66,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (_) {
                     final AuthController _auth = Get.find();
                     final user = _auth.getUser();
-                    String _label = '  Hello mate';
+                    String _label = 'Hello mate';
                     if (user != null) {
                       _label = '${user.displayName}';
                     }
@@ -89,52 +106,61 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.pink[100],
                   child: InkWell(
                     onTap: () => {},
-                    child: SizedBox(
-                      height: 120,
-                      width: 400,
-                      child: Container(
-                        width: 400 / 2,
-                        margin: EdgeInsets.fromLTRB(19, 5, 8, 5),
-                        child: Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Builder(
-                                  builder: (_) {
-                                    final AuthController _auth = Get.find();
-                                    final user = _auth.getUser();
-                                    String _label = '  Hello mate';
-                                    if (user != null) {
-                                      _label = '${user.displayName}';
-                                    }
-                                    return Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(_label,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20)),
-                                    );
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "Latest Activities",
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                              child: Image.asset("assets/images/boy.png"),
-                            )
-                          ],
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          currentindex = 3;
+                        });
+                        loadScreen();
+                        setState(() {});
+                      },
+                      child: SizedBox(
+                        height: 120,
+                        width: 400,
+                        child: Container(
+                          width: 400 / 2,
+                          margin: EdgeInsets.fromLTRB(19, 5, 8, 5),
+                          child: Row(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Builder(
+                                    builder: (_) {
+                                      final AuthController _auth = Get.find();
+                                      final user = _auth.getUser();
+                                      String _label = '  Hello mate';
+                                      if (user != null) {
+                                        _label = '${user.displayName}';
+                                      }
+                                      return Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Text(_label,
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20)),
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Latest Activities",
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                                child: Image.asset("assets/images/boy.png"),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -204,7 +230,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(30)),
                   color: Colors.lime[100],
                   child: InkWell(
-                    onTap: () => {},
+                    onTap: () => {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => StoryPage()))
+                    },
                     child: SizedBox(
                       height: 180,
                       width: 400,
@@ -336,27 +365,33 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                Builder(
-                  builder: (_) {
-                    final AuthController _auth = Get.find();
-                    final user = _auth.getUser();
-                    String _label = 'Hello mate';
-                    if (user != null) {
-                      _label = 'Hello ${user.displayName}';
-                    }
-                    return Text(_label,
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold));
-                  },
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                  child: Builder(
+                    builder: (_) {
+                      final AuthController _auth = Get.find();
+                      final user = _auth.getUser();
+                      String _label = 'Hello mate';
+                      if (user != null) {
+                        _label = 'Hello ${user.displayName}';
+                      }
+                      return Text(_label,
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold));
+                    },
+                  ),
                 ),
                 const SizedBox(height: 10),
-                const Text("Let's Play  ",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold)),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                  child: const Text("Let's Play  ",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold)),
+                ),
                 const SizedBox(height: 10),
               ],
             ),
@@ -384,9 +419,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(
-                          height: 20,
-                        );
+                        return const SizedBox(height: 20);
                       },
                     ),
                   ),

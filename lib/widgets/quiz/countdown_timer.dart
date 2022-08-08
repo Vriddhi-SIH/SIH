@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:quizzle/configs/configs.dart';
 
 class CountdownTimer extends StatelessWidget {
   const CountdownTimer({Key? key, this.color, required this.time})

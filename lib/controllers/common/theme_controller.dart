@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-// import 'package:quizzle/configs/configs.dart';
-// import 'package:quizzle/utils/logger.dart';
+// import 'package:sih_2022/configs/configs.dart';
+// import 'package:sih_2022/utils/logger.dart';
 
 // class ThemeController extends GetxController {
 //   late ThemeData _darkTheme;

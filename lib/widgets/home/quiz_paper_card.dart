@@ -1,12 +1,14 @@
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+
 import 'package:easy_separator/easy_separator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizzle/configs/configs.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/controllers/quiz_paper/quiz_papers_controller.dart';
-import 'package:quizzle/models/quiz_paper_model.dart';
-import 'package:quizzle/screens/screens.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/configs/configs.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/controllers/quiz_paper/quiz_papers_controller.dart';
+import 'package:sih_2022/models/quiz_paper_model.dart';
+import 'package:sih_2022/screens/screens.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 class QuizPaperCard extends GetView<QuizPaperController> {
   const QuizPaperCard({Key? key, required this.model}) : super(key: key);

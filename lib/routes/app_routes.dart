@@ -1,6 +1,14 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:get/get.dart';
-import 'package:quizzle/controllers/controllers.dart';
-import 'package:quizzle/screens/screens.dart';
+import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/screens/auth_and_profile/singin_page.dart';
+import 'package:sih_2022/screens/home/article_screen.dart/article_page.dart';
+import 'package:sih_2022/screens/home/article_screen.dart/article_page2.dart';
+import 'package:sih_2022/screens/home/story_screen.dart';
+import 'package:sih_2022/screens/screens.dart';
+import 'package:sih_2022/screens/splash/splash.dart';
+import 'package:sih_2022/screens/timeline/timeline.dart';
 
 class AppRoutes {
   static List<GetPage> pages() => [
@@ -46,5 +54,10 @@ class AppRoutes {
             page: () => const QuizOverviewScreen(),
             name: QuizOverviewScreen.routeName),
         GetPage(page: () => const Resultcreen(), name: Resultcreen.routeName),
+        GetPage(page: () => SigninPage(), name: SigninPage.routeName),
+        GetPage(page: () => ArticlePage(), name: ArticlePage.routeName),
+        // GetPage(page: () => ArticlePage2(), name: ArticlePage2.routeName),
+        GetPage(page: () => StoryPage(), name: StoryPage.routeName),
+        GetPage(page: () => TimeLinePage(), name: TimeLinePage.routeName),
       ];
 }

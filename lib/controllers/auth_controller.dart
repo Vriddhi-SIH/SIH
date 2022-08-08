@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:quizzle/firebase/references.dart';
-import 'package:quizzle/screens/screens.dart' show HomeScreen, LoginScreen;
-import 'package:quizzle/utils/utils.dart';
-import 'package:quizzle/widgets/widgets.dart';
+import 'package:sih_2022/firebase/references.dart';
+import 'package:sih_2022/screens/screens.dart' show HomeScreen, LoginScreen;
+import 'package:sih_2022/utils/utils.dart';
+import 'package:sih_2022/widgets/widgets.dart';
 
 class AuthController extends GetxController {
   @override
@@ -40,9 +40,11 @@ class AuthController extends GetxController {
         await _auth.signInWithCredential(_credential);
         await saveUser(account);
         navigateToHome();
+      } else {
+        navigateToLogin();
       }
     } on Exception catch (error) {
-      AppLogger.e(error);
+      // AppLogger.e(error);
     }
   }
 
@@ -78,7 +80,7 @@ class AuthController extends GetxController {
   }
 
   void navigateToLogin() {
-    Get.toNamed(LoginScreen.routeName);
+    Get.offAllNamed(LoginScreen.routeName);
   }
 
   void navigateToIntroduction() {

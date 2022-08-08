@@ -68,14 +68,12 @@ class UIParameters {
 }
 
 class RD {
-  // Responsive double
   final double d;
   final double t;
   final double m;
 
   const RD({required this.d, required this.t, required this.m});
 
-  // return double value for each defined screen sizes
   double get(context) {
     final _screenWidth = MediaQuery.of(context).size.width;
     if (kDesktopChangePoint <= _screenWidth) {
@@ -89,14 +87,10 @@ class RD {
 }
 
 class RWP {
-  // Responsive Width Potion
   final double d;
   final double t;
   final double m;
-
   const RWP({required this.d, required this.t, required this.m});
-
-  // return screen width value for each defined screen sizes
   double get(context) {
     final _screenWidth = MediaQuery.of(context).size.width;
     if (kDesktopChangePoint <= _screenWidth) {
