@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this
+// ignore_for_file: unnecessary_this, prefer_collection_literals, unnecessary_new
 
 class TimeLineList {
   String? title = '';

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,6 +46,26 @@ class TimeLinePage extends StatelessWidget {
                       "Pull Down To Refresh",
                       style: TextStyle(color: Colors.amber),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () async {
+                              Future.delayed(Duration(milliseconds: 10));
+                              Controller.getAllData("timelines2");
+                            },
+                            child: Text("Hindi")),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              Future.delayed(Duration(milliseconds: 10));
+                              Controller.getAllData("timelines");
+                            },
+                            child: Text("English"))
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -56,7 +76,7 @@ class TimeLinePage extends StatelessWidget {
               color: Colors.redAccent,
               onRefresh: () async {
                 Future.delayed(Duration(milliseconds: 1));
-                Controller.getAllData();
+                Controller.getAllData(lan);
               },
               animSpeedFactor: 3,
               child: GetBuilder<TimeLineController>(builder: (controller) {
@@ -91,20 +111,6 @@ class TimeLinePage extends StatelessWidget {
                                 ],
                               ),
                             )
-                          // : Row(
-                          //     mainAxisAlignment: MainAxisAlignment.end,
-                          //     children: [
-                          //         Padding(
-                          //           padding:
-                          //               const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                          //           child: Text(
-                          //             "${Controller.productData[index].timeline}",
-                          //             style: TextStyle(
-                          //                 fontSize: 20,
-                          //                 fontWeight: FontWeight.bold),
-                          //           ),
-                          //         )
-                          //       ]),
                           : null,
                       contents: index % 2 != 0
                           ? Container(

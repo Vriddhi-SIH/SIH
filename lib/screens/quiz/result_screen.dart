@@ -17,7 +17,7 @@ class Resultcreen extends GetView<QuizController> {
 
   @override
   Widget build(BuildContext context) {
-    final Color _textColor = Colors.green;
+    const Color _textColor = Colors.green;
     return WillPopScope(
       onWillPop: () async {
         return false;

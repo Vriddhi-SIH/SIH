@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/screens/auth_and_profile/singin_page.dart';
 import 'package:sih_2022/screens/home/article_screen.dart/article_page.dart';
-import 'package:sih_2022/screens/home/article_screen.dart/article_page2.dart';
 import 'package:sih_2022/screens/home/story_screen.dart';
 import 'package:sih_2022/screens/screens.dart';
 import 'package:sih_2022/screens/splash/splash.dart';
@@ -25,9 +24,12 @@ class AppRoutes {
             name: HomeScreen.routeName,
             binding: BindingsBuilder(() {
               Get.put(QuizPaperController());
-              Get.put(MyDrawerController());
             })),
-        GetPage(page: () => LoginScreen(), name: LoginScreen.routeName),
+        GetPage(
+            page: () => LoginScreen(),
+            name: LoginScreen.routeName,
+            transition: Transition.leftToRight,
+            transitionDuration: Duration(milliseconds: 7)),
         GetPage(
             page: () => const ProfileScreen(),
             name: ProfileScreen.routeName,
@@ -43,6 +45,8 @@ class AppRoutes {
             })),
         GetPage(
             page: () => QuizeScreen(),
+            transition: Transition.leftToRight,
+            transitionDuration: Duration(seconds: 5),
             name: QuizeScreen.routeName,
             binding: BindingsBuilder(() {
               Get.put<QuizController>(QuizController());

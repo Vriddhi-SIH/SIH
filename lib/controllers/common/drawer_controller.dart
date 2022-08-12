@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element, deprecated_member_use
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';

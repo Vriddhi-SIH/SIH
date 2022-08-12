@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -69,9 +69,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => TimeLinePage()));
                           },
-                          child: Icon(
-                            Icons.calendar_month,
-                            size: 40,
+                          child: Image(
+                            image: AssetImage('assets/images/tim5.png'),
+                            width: 40,
+                            height: 40,
                           )),
                     ],
                   ),
@@ -83,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (_) {
                     final AuthController _auth = Get.find();
                     final user = _auth.getUser();
-                    String _label = 'Hello mate';
+                    String _label = 'Mate';
                     if (user != null) {
                       _label = '${user.displayName}';
                     }
@@ -98,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 Card(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 10),
+                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                   elevation: 5.00,
                   shadowColor: Colors.grey,
                   shape: RoundedRectangleBorder(
@@ -119,11 +120,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 400,
                         child: Container(
                           width: 400 / 2,
-                          margin: EdgeInsets.fromLTRB(19, 5, 8, 5),
+                          margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
                           child: Row(
                             children: [
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Builder(
                                     builder: (_) {
@@ -131,7 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       final user = _auth.getUser();
                                       String _label = '  Hello mate';
                                       if (user != null) {
-                                        _label = '${user.displayName}';
+                                        _label =
+                                            "${user.displayName?.split(' ').first}'s Progress";
                                       }
                                       return Align(
                                         alignment: Alignment.topLeft,
@@ -139,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 20)),
+                                                fontSize: 25)),
                                       );
                                     },
                                   ),
@@ -147,17 +150,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 10,
                                   ),
                                   Text(
-                                    "Latest Activities",
+                                    "Tiny Tween",
                                     style: TextStyle(
                                         color: Colors.red,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 25),
+                                        fontSize: 20),
                                   ),
+                                  Container(
+                                    width: 200,
+                                    child: Text(
+                                      "Solve 4 More Quizzes To Reach Biigy Tween.",
+                                      style: TextStyle(
+                                          fontSize: 13, color: Colors.black87),
+                                    ),
+                                  )
                                 ],
                               ),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                                child: Image.asset("assets/images/boy.png"),
+                                child: Image(
+                                  image: AssetImage("assets/images/boy5.png"),
+                                ),
                               )
                             ],
                           ),
@@ -184,12 +197,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 150,
                       width: 400,
                       child: Container(
-                        margin: EdgeInsets.fromLTRB(19, 5, 8, 5),
+                        margin: EdgeInsets.fromLTRB(19, 5, 0, 5),
                         child: Row(
                           children: [
                             SizedBox(
-                              width: 400 / 2,
+                              width: 400 / 2.35,
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     "Let's Play",
@@ -199,23 +214,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fontSize: 25),
                                   ),
                                   SizedBox(
-                                    height: 15,
+                                    height: 10,
                                   ),
                                   Text(
-                                    "Hello My name is ayush Kumar Singh and I",
+                                    "Fill Your Day With Super Fun Activities.",
                                     style: TextStyle(
-                                      color: Colors.red,
+                                      color: Colors.grey[700],
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 12,
+                                      fontSize: 18,
                                     ),
                                   ),
+
+                                  // Text(
+                                  //   'Lets do it!!',
+                                  //   style: TextStyle(
+                                  //       color: Colors.orange,
+                                  //       fontSize: 18,
+                                  //       fontWeight: FontWeight.bold),
+                                  // )
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(),
-                              child: Image.asset("assets/images/play.png"),
-                            )
+                            Image(image: AssetImage("assets/images/girl2.png")),
                           ],
                         ),
                       ),
@@ -244,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Container(
                               constraints: BoxConstraints(maxWidth: 135.5),
-                              width: (3 * 400) / 8,
+                              width: (5 * 400) / 8,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -260,13 +280,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   Align(
                                     alignment: Alignment.topLeft,
-                                    child: Text(
-                                      "15 Minutes",
-                                      style: TextStyle(
-                                        color: Colors.orange,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.timer_outlined,
+                                          color: Colors.orange,
+                                        ),
+                                        Text(
+                                          "15 Minutes",
+                                          style: TextStyle(
+                                            color: Colors.orange,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   FittedBox(
@@ -288,10 +316,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(),
+                              padding: EdgeInsets.fromLTRB(18, 0, 0, 0),
                               child: Image(
                                 image: AssetImage("assets/images/dino.png"),
-                                width: 162.0,
+                                // width: 162.0,
                               ),
                             )
                           ],
@@ -308,6 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Material(
         child: Scaffold(
+            backgroundColor: Colors.white,
             body: currentWidget,
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: currentindex,
@@ -323,6 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.red,
                 size: 25,
               ),
+              type: BottomNavigationBarType.fixed,
               unselectedIconTheme: IconThemeData(color: Colors.grey, size: 25),
               selectedItemColor: Colors.red,
               items: <BottomNavigationBarItem>[
@@ -354,80 +384,86 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget TestScreen() {
     QuizPaperController _quizePprContoller = Get.find();
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(kMobileScreenPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 40),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                  child: Builder(
-                    builder: (_) {
-                      final AuthController _auth = Get.find();
-                      final user = _auth.getUser();
-                      String _label = 'Hello mate';
-                      if (user != null) {
-                        _label = 'Hello ${user.displayName}';
-                      }
-                      return Text(_label,
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold));
-                    },
+    return WillPopScope(
+      onWillPop: () async {
+        Get.offAllNamed(HomeScreen.routeName);
+        return Future.delayed(Duration(microseconds: 0));
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(kMobileScreenPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 40),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                    child: Builder(
+                      builder: (_) {
+                        final AuthController _auth = Get.find();
+                        final user = _auth.getUser();
+                        String _label = 'Hello mate';
+                        if (user != null) {
+                          _label = 'Hello ${user.displayName}';
+                        }
+                        return Text(_label,
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold));
+                      },
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                  child: const Text("Let's Play  ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold)),
-                ),
-                const SizedBox(height: 10),
-              ],
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                    child: const Text("Let's Play  ",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: ContentArea(
-                addPadding: false,
-                child: Obx(
-                  () => LiquidPullToRefresh(
-                    height: 150,
-                    springAnimationDurationInMilliseconds: 500,
-                    color: Colors.red[100],
-                    onRefresh: () async {
-                      _quizePprContoller.getAllPapers();
-                    },
-                    child: ListView.separated(
-                      padding: UIParameters.screenPadding,
-                      shrinkWrap: true,
-                      itemCount: _quizePprContoller.allPapers.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return QuizPaperCard(
-                          model: _quizePprContoller.allPapers[index],
-                        );
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: ContentArea(
+                  addPadding: false,
+                  child: Obx(
+                    () => LiquidPullToRefresh(
+                      height: 150,
+                      springAnimationDurationInMilliseconds: 500,
+                      color: Colors.red[100],
+                      onRefresh: () async {
+                        _quizePprContoller.getAllPapers();
                       },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: 20);
-                      },
+                      child: ListView.separated(
+                        padding: UIParameters.screenPadding,
+                        shrinkWrap: true,
+                        itemCount: _quizePprContoller.allPapers.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return QuizPaperCard(
+                            model: _quizePprContoller.allPapers[index],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const SizedBox(height: 20);
+                        },
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

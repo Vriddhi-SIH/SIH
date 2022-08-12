@@ -92,5 +92,6 @@ class NotificationService extends GetxService {
     } catch (e) {
       AppLogger.e(e);
     }
+    return null;
   }
 }

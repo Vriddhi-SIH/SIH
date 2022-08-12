@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this
+// ignore_for_file: unnecessary_this, prefer_collection_literals
 
 class ArticleList {
   String? title = '';
@@ -27,7 +27,7 @@ class ArticleList {
     // mealPrice = json['mealPrice'];
   }
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['title'] = this.title;
     data['description'] = this.description;
 

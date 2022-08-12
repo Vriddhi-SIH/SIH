@@ -68,6 +68,12 @@ flutter:
   - family: AppIcons
     fonts:
       - asset: assets/icons/AppIcons.ttf
+  
+
+  - family: ComicSense
+    fonts:
+      
+      - asset: assets/fonts/ComicSense.ttf   
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
