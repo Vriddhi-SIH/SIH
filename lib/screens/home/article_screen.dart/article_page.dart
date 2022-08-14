@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:sih_2022/controllers/article/article_controller.dart';
 import 'package:sih_2022/screens/home/article_screen.dart/article_page2.dart';
+
 import 'package:sih_2022/screens/screens.dart';
 
 TextStyle st(Color colors) {
@@ -63,7 +64,7 @@ class _ArticlePageState extends State<ArticlePage> {
                                     )));
                           },
                           child: Card(
-                            color: Colors.amber[50],
+                            color: Colors.white,
                             elevation: 3,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),

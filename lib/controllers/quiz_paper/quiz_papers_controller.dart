@@ -51,4 +51,20 @@ class QuizPaperController extends GetxController {
       _authController.showLoginAlertDialog();
     }
   }
+
+  void navigatoChild({required QuizPaperModel paper, bool isTryAgain = false}) {
+    AuthController _authController = Get.find();
+
+    if (_authController.isLogedIn()) {
+      if (isTryAgain) {
+        Get.back();
+        Get.offNamed(QuizeScreen.routeName,
+            arguments: paper, preventDuplicates: false);
+      } else {
+        Get.toNamed(QuizeScreen.routeName, arguments: paper);
+      }
+    } else {
+      _authController.showLoginAlertDialog();
+    }
+  }
 }

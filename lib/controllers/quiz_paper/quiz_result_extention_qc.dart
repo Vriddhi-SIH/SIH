@@ -16,13 +16,13 @@ extension QuizeResult on QuizController {
     return '$correctQuestionCount out of ${allQuestions.length} are correct';
   }
 
-  String get points {
+  double get points {
     var points = (correctQuestionCount / allQuestions.length) *
         100 *
         (quizPaperModel.timeSeconds - remainSeconds) /
         quizPaperModel.timeSeconds *
         100;
-    return points.toStringAsFixed(2);
+    return points.toPrecision(2);
   }
 
   Future<void> saveQuizResults() async {
@@ -46,7 +46,7 @@ extension QuizeResult on QuizController {
             .collection('scores')
             .doc(_user.email),
         {
-          "points": double.parse(points),
+          "points": points,
           "correct_count": '$correctQuestionCount/${allQuestions.length}',
           "paper_id": quizPaperModel.id,
           "user_id": _user.email,
@@ -60,6 +60,6 @@ extension QuizeResult on QuizController {
             'You have just got $points points for ${quizPaperModel.title} -  Tap here to view leaderboard',
         imageUrl: quizPaperModel.imageUrl,
         payload: json.encode(quizPaperModel.toJson()));
-    navigateToHome();
+    navigateToHome1();
   }
 }

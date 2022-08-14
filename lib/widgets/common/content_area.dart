@@ -14,7 +14,7 @@ class ContentArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+      // borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       clipBehavior: Clip.hardEdge,
       type: MaterialType.transparency,
       child: Ink(

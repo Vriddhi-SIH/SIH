@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
     appId: '1:647627347924:web:fbaccef15fb1b680042841',
     messagingSenderId: '647627347924',
     projectId: 'quizx-fb763',
-    // authDomain: 'quizx-fb763.firebaseapp.com',
+    authDomain: 'quizx-fb763.firebaseapp.com',
     storageBucket: 'quizx-fb763.appspot.com',
   );
 

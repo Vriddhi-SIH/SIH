@@ -4,6 +4,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=1.12.13+hotfix.6 <2.0.0"
 
 dependencies:
   flutter:
@@ -32,8 +33,13 @@ dependencies:
   http: ^0.13.4
   url_launcher: ^6.0.18
   timelines: ^0.1.0
-  
-  # timeline_tile: ^2.0.0
+  google_translator: ^1.0.0
+  transliteration: ^0.0.6
+  translator: ^0.1.7
+  scoped_model: ^1.1.0
+
+  audioplayers: ^1.0.1
+  pie_chart: ^5.3.2
   
   
 
@@ -44,7 +50,7 @@ dev_dependencies:
   
 
 flutter:
-
+  
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
@@ -52,7 +58,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/DB/papers/
-
+  
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -73,7 +79,12 @@ flutter:
   - family: ComicSense
     fonts:
       
-      - asset: assets/fonts/ComicSense.ttf   
+      - asset: assets/fonts/ComicSense.ttf  
+
+  - family: Nunito
+    fonts:
+      
+      - asset: assets/fonts/Nunito-Regular.ttf   
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

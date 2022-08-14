@@ -95,7 +95,7 @@ class RecentQuizCard extends StatelessWidget {
                                   Icons.emoji_events_outlined,
                                   color: Colors.purple,
                                 ),
-                                text: Text(recentTest.points.toString()),
+                                text: Text(recentTest.points!.toString()),
                               ),
                             ],
                           ),

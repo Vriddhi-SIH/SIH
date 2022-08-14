@@ -22,7 +22,6 @@ class LeaderBoardScreen extends GetView<LeaderBoardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: const CustomAppBar(),
       bottomNavigationBar: Obx(() => controller.myScores.value == null
           ? const SizedBox()
           : LeaderBoardCard(
@@ -34,7 +33,7 @@ class LeaderBoardScreen extends GetView<LeaderBoardController> {
           () => controller.loadingStatus.value == LoadingStatus.loading
               ? const ContentArea(
                   addPadding: true,
-                  child: LeaderBoardPlaceHolder(),
+                  child: CircularProgressIndicator(),
                 )
               : ContentArea(
                   addPadding: false,
@@ -45,6 +44,7 @@ class LeaderBoardScreen extends GetView<LeaderBoardController> {
                     },
                     itemBuilder: (BuildContext context, int index) {
                       final data = controller.leaderBoard[index];
+
                       return LeaderBoardCard(
                         data: data,
                         index: index,

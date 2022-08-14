@@ -2,10 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_translator/google_translator.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import 'package:sih_2022/controllers/timeline/timeline_controller.dart';
+import 'package:sih_2022/screens/timeline/m.dart';
 import 'package:timelines/timelines.dart';
+import 'package:transliteration/response/transliteration_response.dart';
+import 'package:transliteration/transliteration.dart';
 
 TextStyle st(Color colors) {
   return TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: colors);
@@ -16,17 +20,25 @@ class TimeLinePage extends StatelessWidget {
   static const routeName = "/timeline";
 
   final Controller = Get.put(TimeLineController());
+  Future<String> setHindi(Languages lan, String text) async {
+    TransliterationResponse? _response =
+        await Transliteration.transliterate(text, lan);
+
+    return lan == Languages.ENGLISH
+        ? text
+        : _response!.transliterationSuggestions[0];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.amber[100],
+      color: Colors.white,
       child: Column(
         children: [
           Card(
-            elevation: 5,
+            elevation: 0,
             child: Container(
-              color: Color.fromARGB(255, 255, 242, 204),
+              color: Color.fromARGB(255, 255, 255, 255),
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 5, 0, 20),
@@ -36,34 +48,31 @@ class TimeLinePage extends StatelessWidget {
                       height: 50,
                     ),
                     Text(
-                      "The Growth TimeLine",
+                      "The Growth Timeline",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Colors.red),
-                    ),
-                    Text(
-                      "Pull Down To Refresh",
-                      style: TextStyle(color: Colors.amber),
-                    ),
+                          fontFamily: 'Nunito',
+                          color: Colors.black),
+                    ).translate(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton(
-                            onPressed: () async {
-                              Future.delayed(Duration(milliseconds: 10));
-                              Controller.getAllData("timelines2");
-                            },
-                            child: Text("Hindi")),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              Future.delayed(Duration(milliseconds: 10));
-                              Controller.getAllData("timelines");
-                            },
-                            child: Text("English"))
+                        // ElevatedButton(
+                        //     onPressed: () async {
+                        //       Future.delayed(Duration(milliseconds: 10));
+                        //       Controller.getAllData("timelines2");
+                        //     },
+                        //     child: Text("Hindi")),
+                        // SizedBox(
+                        //   width: 20,
+                        // ),
+                        // ElevatedButton(
+                        //     onPressed: () {
+                        //       Future.delayed(Duration(milliseconds: 10));
+                        //       Controller.getAllData("timelines");
+                        //     },
+                        //     child: Text("English")),
                       ],
                     ),
                   ],

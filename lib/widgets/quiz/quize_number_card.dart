@@ -23,10 +23,10 @@ class QuizNumberCard extends StatelessWidget {
         _backgroundColor = Colors.amber;
         break;
       case AnswerStatus.correct:
-        _backgroundColor = Colors.red;
+        _backgroundColor = Colors.green;
         break;
       case AnswerStatus.wrong:
-        _backgroundColor = Colors.greenAccent;
+        _backgroundColor = Colors.red;
         break;
       case AnswerStatus.notanswered:
         _backgroundColor = Theme.of(context).primaryColor.withOpacity(0.1);

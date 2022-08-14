@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sih_2022/controllers/auth_controller.dart';
 import 'package:sih_2022/firebase/firebase_configs.dart';
 import 'package:sih_2022/models/models.dart';
+import 'package:sih_2022/screens/child/home.dart';
 import 'package:sih_2022/screens/screens.dart';
 import 'package:sih_2022/utils/logger.dart';
 import 'package:sih_2022/widgets/dialogs/dialogs.dart';
@@ -162,5 +163,10 @@ class QuizController extends GetxController {
   void navigateToHome() {
     _timer!.cancel();
     Get.offNamedUntil(HomeScreen.routeName, (route) => false);
+  }
+
+  void navigateToHome1() {
+    _timer!.cancel();
+    Get.offNamedUntil(HomeScreen1.routeName, (route) => false);
   }
 }
