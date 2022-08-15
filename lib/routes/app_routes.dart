@@ -23,12 +23,16 @@ class AppRoutes {
         GetPage(
             page: () => HomeScreen(),
             name: HomeScreen.routeName,
+            transition: Transition.rightToLeftWithFade,
+            transitionDuration: Duration(milliseconds: 10),
             binding: BindingsBuilder(() {
               Get.put(QuizPaperController());
             })),
         GetPage(
             page: () => HomeScreen1(),
             name: HomeScreen1.routeName,
+            transition: Transition.rightToLeftWithFade,
+            transitionDuration: Duration(milliseconds: 10),
             binding: BindingsBuilder(() {
               Get.put(QuizPaperController());
             })),

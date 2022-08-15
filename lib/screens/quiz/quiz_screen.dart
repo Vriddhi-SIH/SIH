@@ -127,7 +127,7 @@ class QuizeScreen extends GetView<QuizController> {
                                     height: 55,
                                     width: 55,
                                     child: MainButton(
-                                      color: Colors.amber,
+                                      color: Color.fromRGBO(255, 100, 100, 1),
                                       onTap: () {
                                         controller.prevQuestion();
                                       },
@@ -144,7 +144,7 @@ class QuizeScreen extends GetView<QuizController> {
                                     visible: controller.loadingStatus.value ==
                                         LoadingStatus.completed,
                                     child: MainButton(
-                                      color: Colors.amber,
+                                      color: Color.fromRGBO(255, 100, 100, 1),
                                       onTap: () {
                                         controller.islastQuestion
                                             ? Get.toNamed(

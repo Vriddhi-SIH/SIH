@@ -14,6 +14,5 @@ class PieChartController extends GetxController {
       key1 = (key1 + 1);
     }
     update();
-    print(catMap);
   }
 }

@@ -48,12 +48,13 @@ class CorrectAnswerCard extends StatelessWidget {
     return Ink(
       child: Text(
         answer,
-        style: const TextStyle(color: Colors.pink, fontWeight: FontWeight.bold),
+        style:
+            const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: UIParameters.cardBorderRadius,
-        color: Colors.pink.withOpacity(0.1),
+        color: Colors.green,
       ),
     );
   }
@@ -72,12 +73,13 @@ class WrongAnswerCard extends StatelessWidget {
     return Ink(
       child: Text(
         answer,
-        style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+        style:
+            const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: UIParameters.cardBorderRadius,
-        color: Colors.red[100],
+        color: Colors.red,
       ),
     );
   }

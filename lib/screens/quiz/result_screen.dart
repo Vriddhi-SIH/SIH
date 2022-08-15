@@ -115,7 +115,7 @@ class Resultcreen extends GetView<QuizController> {
                     children: [
                       Expanded(
                           child: MainButton(
-                        color: Colors.blueGrey,
+                        color: Colors.pink[50],
                         onTap: () {
                           controller.tryAgain();
                         },
@@ -126,6 +126,7 @@ class Resultcreen extends GetView<QuizController> {
                       ),
                       Expanded(
                           child: MainButton(
+                        color: Colors.white,
                         onTap: () {
                           controller.saveQuizResults();
                         },

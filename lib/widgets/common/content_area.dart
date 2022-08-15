@@ -6,8 +6,9 @@ class ContentArea extends StatelessWidget {
     Key? key,
     required this.child,
     this.addPadding = true,
+    this.decor = const BoxDecoration(),
   }) : super(key: key);
-
+  final BoxDecoration decor;
   final Widget child;
   final bool addPadding;
 
@@ -18,7 +19,7 @@ class ContentArea extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       type: MaterialType.transparency,
       child: Ink(
-        decoration: BoxDecoration(color: Colors.red[50]),
+        decoration: decor,
         padding: addPadding
             ? const EdgeInsets.only(
                 top: kMobileScreenPadding,

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, curly_braces_in_flow_control_structures
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
 
 import 'dart:async';
 
@@ -112,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Scaffold(
           extendBodyBehindAppBar: true,
           body: Container(
-            color: Color.fromRGBO(255, 100, 100, 1),
+            color: Colors.grey[100],
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -126,64 +126,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 35,
-                              foregroundImage: _auth.getUser() == null
-                                  ? null
-                                  : NetworkImage(_auth.getUser()!.photoURL!),
-                              backgroundColor: Colors.white,
+                        Card(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 100,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                CircleAvatar(
+                                  radius: 30,
+                                  foregroundImage: _auth.getUser() == null
+                                      ? null
+                                      : NetworkImage(
+                                          _auth.getUser()!.photoURL!),
+                                  backgroundColor: Colors.white,
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  _auth.getUser() == null
+                                      ? "Hello Mate"
+                                      : _auth.getUser()!.displayName ?? '',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
                             ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Text(
-                              _auth.getUser() == null
-                                  ? "Hello Mate"
-                                  : _auth.getUser()!.displayName ?? '',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
+                          ),
                         ),
                         Row(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Center(
-                                child: Text(
-                                  'My recent tests ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white),
-                                  onPressed: () {
-                                    _auth.getUser() == null
-                                        ? Get.find<AuthController>()
-                                            .navigateToLogin()
-                                        : Get.find<AuthController>().signOut();
-                                  },
-                                  child: Text(
-                                      _auth.getUser() == null
-                                          ? "Sign In"
-                                          : "Sign Out",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold))),
-                            )
-                          ],
+                          children: [],
                         ),
                       ],
                     ),
@@ -199,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20)),
-                              color: Color.fromARGB(255, 253, 233, 240),
+                              color: Colors.pink[50],
                             ),
                             child: Column(
                               children: [
@@ -232,6 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Expanded(
                   child: Obx(
                     () => ContentArea(
+                      decor: BoxDecoration(color: Colors.pink[50]),
                       addPadding: false,
                       child: ListView.separated(
                         padding: UIParameters.screenPadding,

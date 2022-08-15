@@ -1,7 +1,7 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sih_2022/screens/mental_health/mental_health.dart';
 
 class MusicPage extends StatefulWidget {
   MusicPage({Key? key}) : super(key: key);
@@ -63,62 +63,90 @@ class _MusicPageState extends State<MusicPage> {
         return Future.delayed(Duration(microseconds: 5));
       },
       child: Material(
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Center(
+              child: Container(
+            height: 500,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(28),
+                color: Colors.grey[200]),
             child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            // Image(
-            //   image: AssetImage('assets/images/yoga.png'),
-            // ),
-            Slider(
-                min: 0,
-                max: duration.inSeconds.toDouble(),
-                value: position.inSeconds.toDouble(),
-                onChanged: (value) async {
-                  final position = Duration(seconds: value.toInt());
-                  await audioPlayer.seek(position);
-                  await audioPlayer.resume();
-                }),
-            Padding(
-              padding: EdgeInsets.all(4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(formatTime(duration)),
-                  Text(formatTime(duration - position)),
-                ],
-              ),
-            ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: AssetImage('assets/images/music_player_image.png'),
+                  height: 250,
+                  width: 250,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                InkWell(
+                    onTap: () async {
+                      if (isPlaying2) {
+                        await Future.delayed(Duration(microseconds: 1));
+                        setState(() {
+                          isPlaying2 = false;
+                        });
+                      } else if (isPlaying) {
+                        await audioPlayer.pause();
+                      } else {
+                        setState(() {
+                          isPlaying2 = true;
+                        });
+                        String url =
+                            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3";
 
-            InkWell(
-                onTap: () async {
-                  if (isPlaying2) {
-                    await Future.delayed(Duration(microseconds: 1));
-                    setState(() {
-                      isPlaying2 = false;
-                    });
-                  } else if (isPlaying) {
-                    await audioPlayer.pause();
-                  } else {
-                    setState(() {
-                      isPlaying2 = true;
-                    });
-                    String url =
-                        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3";
-
-                    await audioPlayer.play(UrlSource(url));
-                  }
-                },
-                child: CircleAvatar(
-                    child: isPlaying
-                        ? Icon(
-                            Icons.pause,
-                          )
-                        : Icon(Icons.play_arrow)))
-          ],
-        )),
+                        await audioPlayer.play(UrlSource(url));
+                      }
+                    },
+                    child: CircleAvatar(
+                        backgroundColor: Color.fromRGBO(255, 100, 100, 1),
+                        foregroundColor: Colors.grey[200],
+                        maxRadius: 35,
+                        child: isPlaying
+                            ? Icon(
+                                Icons.pause,
+                                size: 35,
+                              )
+                            : Icon(
+                                Icons.play_arrow,
+                                size: 35,
+                              ))),
+                Slider(
+                    thumbColor: Color.fromRGBO(255, 100, 100, 1),
+                    inactiveColor: Colors.grey[500],
+                    activeColor: Color.fromRGBO(255, 100, 100, 1),
+                    min: 0,
+                    max: duration.inSeconds.toDouble(),
+                    value: position.inSeconds.toDouble(),
+                    onChanged: (value) async {
+                      final position = Duration(seconds: value.toInt());
+                      await audioPlayer.seek(position);
+                      await audioPlayer.resume();
+                    }),
+                Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                        child: Text(formatTime(position)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        child: Text(formatTime(duration)),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )),
+        ),
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:sih_2022/screens/data_uploader_screen.dart';
 import 'bindings/initial_binding.dart';
 import 'firebase_options.dart';
 import 'routes/app_routes.dart';
@@ -29,9 +28,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GoogleTranslatorInit(apiKey,
         automaticDetection: true,
-        translateFrom: Locale('en'),
-        translateTo: Locale('hi'),
-        cacheDuration: Duration(days: 13),
+        translateFrom: const Locale('en'),
+        translateTo: const Locale('hi'),
+        cacheDuration: const Duration(days: 13),
         builder: () => GetMaterialApp(
               theme: ThemeData(fontFamily: 'Nunito'),
               navigatorKey: navigatorKey,

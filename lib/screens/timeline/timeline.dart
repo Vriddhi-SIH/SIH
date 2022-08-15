@@ -6,7 +6,6 @@ import 'package:google_translator/google_translator.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import 'package:sih_2022/controllers/timeline/timeline_controller.dart';
-import 'package:sih_2022/screens/timeline/m.dart';
 import 'package:timelines/timelines.dart';
 import 'package:transliteration/response/transliteration_response.dart';
 import 'package:transliteration/transliteration.dart';

@@ -7,7 +7,7 @@ const kMobileChangePoint = 420.0;
 const kSmallMobileChangePoint = 250.0;
 const kMobileScreenPadding = 25.0;
 const kButtonCornerRadius = 10.0;
-const kCardBorderrRadius = 5.0;
+const kCardBorderrRadius = 20.0;
 
 // ignore: avoid_classes_with_only_static_members
 class UIParameters {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sih_2022/screens/child/home.dart';
 
 class Dialogs {
   static final Dialogs _singleton = Dialogs._internal();
@@ -43,7 +44,7 @@ class Dialogs {
                 child: const Text('No'),
               ),
               TextButton(
-                onPressed: () => Get.back(result: true),
+                onPressed: () => Get.offAllNamed(HomeScreen1.routeName),
                 child: const Text('Yes'),
               ),
             ],

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, duplicate_ignore
 
 import 'package:flutter/material.dart';
 import 'package:sih_2022/screens/music/music_page.dart';
@@ -55,7 +55,7 @@ class _HealthPageState extends State<HealthPage> {
                     },
                     child: SizedBox(
                       height: 220,
-                      width: 175,
+                      width: MediaQuery.of(context).size.width / 2.2,
                       child: Container(
                         width: 400 / 2.5,
                         margin: EdgeInsets.fromLTRB(15, 0, 10, 0),
@@ -118,7 +118,7 @@ class _HealthPageState extends State<HealthPage> {
                     },
                     child: SizedBox(
                       height: 220,
-                      width: 175,
+                      width: MediaQuery.of(context).size.width / 2.2,
                       child: Container(
                         width: 400 / 2.5,
                         margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
@@ -183,7 +183,7 @@ class _HealthPageState extends State<HealthPage> {
                     },
                     child: SizedBox(
                       height: 220,
-                      width: 175,
+                      width: MediaQuery.of(context).size.width / 2.2,
                       child: Container(
                         width: 400 / 2.5,
                         margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
@@ -246,7 +246,7 @@ class _HealthPageState extends State<HealthPage> {
                     },
                     child: SizedBox(
                       height: 220,
-                      width: 175,
+                      width: MediaQuery.of(context).size.width / 2.2,
                       child: Container(
                         width: 400 / 2.5,
                         margin: EdgeInsets.fromLTRB(15, 10, 10, 0),

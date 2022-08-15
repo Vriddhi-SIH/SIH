@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sih_2022/configs/configs.dart';
 import 'package:sih_2022/controllers/article/piechart_controller.dart';
 import 'package:sih_2022/controllers/controllers.dart';
@@ -10,7 +11,7 @@ import 'package:sih_2022/screens/auth_and_profile/profile_screen.dart';
 import 'package:sih_2022/screens/child/home.dart';
 import 'package:sih_2022/screens/community/community_page.dart';
 import 'package:sih_2022/screens/home/article_screen.dart/article_page.dart';
-import 'package:sih_2022/screens/home/story_screen.dart';
+import 'package:sih_2022/screens/home/settings_parent.dart';
 import 'package:sih_2022/screens/mental_health/mental_health.dart';
 import 'package:sih_2022/screens/timeline/timeline.dart';
 import 'package:sih_2022/widgets/widgets.dart';
@@ -23,12 +24,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // late SharedPreferences _prefs;
+  // retrieveStringValue() async {
+  //   _prefs = await SharedPreferences.getInstance();
+  //   String? value = _prefs.getString("childname");
+  //   return value as String;
+  // }
+  late SharedPreferences _prefs;
+  String password = '';
+  String newvalue = '';
+
+  retrieveStringValue() async {
+    _prefs = await SharedPreferences.getInstance();
+    String? value = _prefs.getString("password");
+    setState(() {
+      password = value as String;
+    });
+
+    Future.delayed(Duration(seconds: 1));
+    setState(() {});
+  }
+
   int currentindex = 0;
   late Widget currentWidget = homepage3();
   void loadScreen() {
     switch (currentindex) {
       case 0:
         currentWidget = homepage3();
+        retrieveStringValue();
         break;
       case 1:
         currentWidget = CommunityPage();
@@ -36,7 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
 
       case 3:
-        // currentWidget = ArticlePage();
+        setState(() {
+          currentWidget = ParentSettings();
+        });
+
         break;
       case 2:
         setState(() {
@@ -80,22 +106,53 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
-                      // InkWell(
-                      //     onTap: () {
-                      //       Navigator.of(context).push(MaterialPageRoute(
-                      //           builder: (context) => TimeLinePage()));
-                      //     },
-                      //     child: Image(
-                      //       image: AssetImage('assets/images/tim5.png'),
-                      //       width: 40,
-                      //       height: 40,
-                      //     )),
                       InkWell(
-                          onTap: () {
-                            setState(() {
-                              Get.offAllNamed(HomeScreen1.routeName);
-                            });
-                          },
+                          onTap: () => showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text(
+                                      "Enter the Password To Enter Child Mode"),
+                                  actionsPadding: EdgeInsets.all(20),
+                                  actions: <Widget>[
+                                    Container(
+                                      width: MediaQuery.of(context).size.width /
+                                          2.5,
+                                      height: 80,
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                          labelText: 'Enter the Password ',
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(5),
+                                            ),
+                                          ),
+                                        ),
+                                        onChanged: (value) {
+                                          setState(() {
+                                            newvalue = value;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {});
+                                          print(password);
+                                          print(newvalue);
+                                          password == newvalue
+                                              ? Get.offAllNamed(
+                                                  HomeScreen1.routeName)
+                                              : ScaffoldMessenger.of(context)
+                                                  .showSnackBar(const SnackBar(
+                                                      duration:
+                                                          Duration(seconds: 2),
+                                                      content: Text(
+                                                          'Wrong Password')));
+                                        },
+                                        child: Text("Login")),
+                                  ],
+                                ),
+                              ),
                           child: Image(
                             image: AssetImage('assets/images/child_login.png'),
                             width: 40,
@@ -104,6 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+
                 SizedBox(
                   height: 8,
                 ),
@@ -145,57 +203,59 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 140,
                       width: 400,
                       child: Container(
-                        width: 400 / 2.5,
+                        width: 400,
                         margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
-                        child: Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 200,
-                                  child: Text(
-                                    "Your child's progress",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
+                                    child: Text(
+                                      "Your child's progress",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.55,
-                                  child: Text(
-                                    "45 minutes speent today",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(182, 46, 46, 46),
-                                        fontSize: 15),
+                                  SizedBox(
+                                    height: 10,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  width: 200,
-                                  child: Text(
-                                    "15% progress",
-                                    style: TextStyle(
-                                        fontSize: 13, color: Colors.black87),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    child: Text(
+                                      "45 minutes speent today",
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(182, 46, 46, 46),
+                                          fontSize: 15),
+                                    ),
                                   ),
-                                )
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Image(
-                                image: AssetImage("assets/images/box.png"),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    width: 180,
+                                    child: Text(
+                                      "15% progress",
+                                      style: TextStyle(
+                                          fontSize: 13, color: Colors.black87),
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
-                          ],
+                              Image(
+                                image: AssetImage("assets/images/box.png"),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -368,9 +428,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () => {},
                     child: InkWell(
                       onTap: () {
-                        setState(() {
-                          currentindex = 3;
-                        });
+                        setState(() {});
                         loadScreen();
                         setState(() {});
                       },
@@ -481,7 +539,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.55,
+                                      MediaQuery.of(context).size.width * 0.45,
                                   child: Text(
                                     "Let us help you with your child's mental issues",
                                     style: TextStyle(
@@ -679,6 +737,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ]),
             )));
+  }
+
+  @override
+  void initState() {
+    retrieveStringValue();
+    setState(() {});
+    super.initState();
   }
 
   @override
