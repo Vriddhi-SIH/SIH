@@ -1,10 +1,10 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, sized_box_for_whitespace, avoid_print, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sih_2022/configs/configs.dart';
+
 import 'package:sih_2022/controllers/article/piechart_controller.dart';
 import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/screens/auth_and_profile/profile_screen.dart';
@@ -14,7 +14,6 @@ import 'package:sih_2022/screens/home/article_screen.dart/article_page.dart';
 import 'package:sih_2022/screens/home/settings_parent.dart';
 import 'package:sih_2022/screens/mental_health/mental_health.dart';
 import 'package:sih_2022/screens/timeline/timeline.dart';
-import 'package:sih_2022/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -24,12 +23,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // late SharedPreferences _prefs;
-  // retrieveStringValue() async {
-  //   _prefs = await SharedPreferences.getInstance();
-  //   String? value = _prefs.getString("childname");
-  //   return value as String;
-  // }
   late SharedPreferences _prefs;
   String password = '';
   String newvalue = '';
@@ -43,6 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     Future.delayed(Duration(seconds: 1));
     setState(() {});
+  }
+
+  bool islog = false;
+  saveStringValue(bool name) async {
+    _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool('childlof', name);
   }
 
   int currentindex = 0;
@@ -84,13 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.fromLTRB(18, 20, 18, 0),
             child: SingleChildScrollView(
               child: Column(children: [
-                // ElevatedButton(
-                //     onPressed: () {
-                //       setState(() {
-                //         Get.offAllNamed(HomeScreen1.routeName);
-                //       });
-                //     },
-                //     child: Text("hello World")),
                 SizedBox(
                   height: 40,
                 ),
@@ -144,10 +136,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   HomeScreen1.routeName)
                                               : ScaffoldMessenger.of(context)
                                                   .showSnackBar(const SnackBar(
+                                                      backgroundColor:
+                                                          Colors.red,
                                                       duration:
                                                           Duration(seconds: 2),
                                                       content: Text(
-                                                          'Wrong Password')));
+                                                        'Wrong Password',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      )));
                                         },
                                         child: Text("Login")),
                                   ],
@@ -742,6 +742,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     retrieveStringValue();
+    saveStringValue(islog);
     setState(() {});
     super.initState();
   }
@@ -804,91 +805,5 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             )));
-  }
-
-  Widget TestScreen() {
-    QuizPaperController _quizePprContoller = Get.find();
-    return WillPopScope(
-      onWillPop: () async {
-        Get.offAllNamed(HomeScreen.routeName);
-        return Future.delayed(Duration(microseconds: 0));
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(kMobileScreenPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 40),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: Builder(
-                      builder: (_) {
-                        final AuthController _auth = Get.find();
-                        final user = _auth.getUser();
-                        String _label = 'Hello mate';
-                        if (user != null) {
-                          _label = 'Hello ${user.displayName}';
-                        }
-                        return Text(_label,
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold));
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                    child: const Text("Let's Play  ",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  const SizedBox(height: 10),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: ContentArea(
-                  addPadding: false,
-                  child: Obx(
-                    () => LiquidPullToRefresh(
-                      height: 150,
-                      springAnimationDurationInMilliseconds: 500,
-                      color: Colors.red[100],
-                      onRefresh: () async {
-                        _quizePprContoller.getAllPapers();
-                      },
-                      child: ListView.separated(
-                        padding: UIParameters.screenPadding,
-                        shrinkWrap: true,
-                        itemCount: _quizePprContoller.allPapers.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return QuizPaperCard(
-                            model: _quizePprContoller.allPapers[index],
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(height: 20);
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

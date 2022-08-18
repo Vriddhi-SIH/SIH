@@ -25,19 +25,19 @@ class UIParameters {
   }
 
   static bool isDesktop(BuildContext context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
-    return (kDesktopChangePoint <= _screenWidth);
+    final screenWidth = MediaQuery.of(context).size.width;
+    return (kDesktopChangePoint <= screenWidth);
   }
 
   static bool isMobile(BuildContext context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
-    return (kTabletChangePoint > _screenWidth);
+    final screenWidth = MediaQuery.of(context).size.width;
+    return (kTabletChangePoint > screenWidth);
     //return (kMobileChangePoint <= _screenWidth);
   }
 
   static bool isTablet(BuildContext context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
-    return (kTabletChangePoint <= _screenWidth);
+    final screenWidth = MediaQuery.of(context).size.width;
+    return (kTabletChangePoint <= screenWidth);
   }
 
   static List<BoxShadow> getShadow(
@@ -75,10 +75,10 @@ class RD {
   const RD({required this.d, required this.t, required this.m});
 
   double get(context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
-    if (kDesktopChangePoint <= _screenWidth) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    if (kDesktopChangePoint <= screenWidth) {
       return d;
-    } else if (kTabletChangePoint <= _screenWidth) {
+    } else if (kTabletChangePoint <= screenWidth) {
       return t;
     } else {
       return m;
@@ -92,13 +92,13 @@ class RWP {
   final double m;
   const RWP({required this.d, required this.t, required this.m});
   double get(context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
-    if (kDesktopChangePoint <= _screenWidth) {
-      return d * _screenWidth;
-    } else if (kTabletChangePoint <= _screenWidth) {
-      return t * _screenWidth;
+    final screenWidth = MediaQuery.of(context).size.width;
+    if (kDesktopChangePoint <= screenWidth) {
+      return d * screenWidth;
+    } else if (kTabletChangePoint <= screenWidth) {
+      return t * screenWidth;
     } else {
-      return m * _screenWidth;
+      return m * screenWidth;
     }
   }
 }

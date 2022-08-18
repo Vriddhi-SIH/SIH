@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, sized_box_for_whitespace
 
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sih_2022/configs/configs.dart';
 import 'package:sih_2022/controllers/article/piechart_controller.dart';
 import 'package:sih_2022/controllers/controllers.dart';
@@ -24,6 +25,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool loading = true;
   final contro = Get.put(PieChartController());
+  late SharedPreferences _prefs;
+  String childName = '';
 
   // late double physics = 0;
   // double chemistry = 0;
@@ -37,10 +40,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // String history1 = '';
 
   // String english1 = '';
+  retrieveStringValue() async {
+    _prefs = await SharedPreferences.getInstance();
+    String? value = _prefs.getString("childname");
+    setState(() {
+      childName = value as String;
+    });
+    setState(() {});
+    await Future.delayed(Duration(seconds: 1));
+  }
 
   @override
   void initState() {
     Future.delayed(Duration(seconds: 10));
+    retrieveStringValue();
     setState(() {
       contro.getAllData();
     });
@@ -78,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       legendOptions: LegendOptions(
           showLegendsInRow: true,
           showLegends: true,
-          legendShape: BoxShape.rectangle,
+          legendShape: BoxShape.circle,
           legendPosition: LegendPosition.top,
           legendTextStyle: TextStyle(
             fontWeight: FontWeight.bold,
@@ -129,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Card(
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: 100,
+                            height: 80,
                             child: Row(
                               children: [
                                 SizedBox(
@@ -149,7 +162,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Text(
                                   _auth.getUser() == null
                                       ? "Hello Mate"
-                                      : _auth.getUser()!.displayName ?? '',
+                                      : childName,
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
@@ -159,12 +172,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        Row(
-                          children: [],
-                        ),
                       ],
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 FutureBuilder(
                     future: Future.delayed(Duration(seconds: 7)),
@@ -181,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Column(
                               children: [
                                 Text(
-                                  "Your Stats",
+                                  "Your Child Stats",
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold),

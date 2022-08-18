@@ -1,18 +1,30 @@
-// ignore_for_file: unused_catch_clause
+// ignore_for_file: unused_catch_clause, prefer_const_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sih_2022/firebase/references.dart';
+import 'package:sih_2022/screens/child/home.dart';
 import 'package:sih_2022/screens/screens.dart' show HomeScreen, LoginScreen;
 import 'package:sih_2022/utils/utils.dart';
 import 'package:sih_2022/widgets/widgets.dart';
 
 class AuthController extends GetxController {
+  late SharedPreferences _prefs;
+  bool islog = true;
   @override
   void onReady() {
+    retrieveStringValue();
     initAuth();
     super.onReady();
+  }
+
+  retrieveStringValue() async {
+    _prefs = await SharedPreferences.getInstance();
+    bool? value = _prefs.getBool("childlof");
+    islog = value as bool;
+    Future.delayed(Duration(seconds: 1));
   }
 
   late FirebaseAuth _auth;
@@ -30,16 +42,16 @@ class AuthController extends GetxController {
   }
 
   Future<void> siginInWithGoogle() async {
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
-      GoogleSignInAccount? account = await _googleSignIn.signIn();
+      GoogleSignInAccount? account = await googleSignIn.signIn();
       if (account != null) {
-        final _gAuthentication = await account.authentication;
-        final _credential = GoogleAuthProvider.credential(
-            idToken: _gAuthentication.idToken,
-            accessToken: _gAuthentication.accessToken);
-        await _auth.signInWithCredential(_credential);
+        final gAuthentication = await account.authentication;
+        final credential = GoogleAuthProvider.credential(
+            idToken: gAuthentication.idToken,
+            accessToken: gAuthentication.accessToken);
+        await _auth.signInWithCredential(credential);
         await saveUser(account);
         navigateToHome();
       } else {
@@ -86,7 +98,9 @@ class AuthController extends GetxController {
   }
 
   void navigateToIntroduction() {
-    Get.offAllNamed(HomeScreen.routeName);
+    islog
+        ? Get.offAllNamed(HomeScreen1.routeName)
+        : Get.offAllNamed(HomeScreen.routeName);
   }
 
   void showLoginAlertDialog() {

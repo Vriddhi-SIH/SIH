@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, duplicate_ignore
 
 import 'package:flutter/material.dart';
+import 'package:sih_2022/screens/mental_health/mental_health_check_page.dart';
 import 'package:sih_2022/screens/music/music_page.dart';
 
 class HealthPage extends StatefulWidget {
@@ -109,10 +110,7 @@ class _HealthPageState extends State<HealthPage> {
                   color: Color.fromRGBO(212, 246, 204, 1),
                   child: InkWell(
                     onTap: () {
-                      setState(() {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => MusicPage()));
-                      });
+                      setState(() {});
 
                       setState(() {});
                     },
@@ -238,8 +236,8 @@ class _HealthPageState extends State<HealthPage> {
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => MusicPage()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MentalHealthPage()));
                       });
 
                       setState(() {});

@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, sized_box_for_whitespace, no_leading_underscores_for_local_identifiers, avoid_unnecessary_containers, unused_import
 
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,10 +10,8 @@ import 'package:sih_2022/configs/configs.dart';
 import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/screens/child/settings.dart';
 import 'package:sih_2022/screens/games/game_page.dart';
-
 import 'package:sih_2022/screens/home/home_screen.dart';
 import 'package:sih_2022/screens/home/story_screen.dart';
-
 import 'package:sih_2022/widgets/widgets.dart';
 
 class HomeScreen1 extends StatefulWidget {
@@ -25,13 +25,18 @@ class _HomeScreen1State extends State<HomeScreen1> {
   int currentindex = 0;
   late SharedPreferences _prefs;
   late Widget currentWidget = homepage2();
+  bool islog = true;
+  saveStringValue(bool name) async {
+    _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool('childlof', name);
+  }
+
   retrieveStringValue() async {
     _prefs = await SharedPreferences.getInstance();
     String? value = _prefs.getString("childname");
     setState(() {
       childName = value as String;
     });
-    print(childName);
     currentWidget = homepage2();
     await Future.delayed(Duration(seconds: 1));
   }
@@ -52,13 +57,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
         break;
       case 3:
         currentWidget = SettingsPage();
-        // setState(() {
-        //   final cont = Get.put(PieChartController());
-        //   cont.getAllData();
-        // });
 
-        // Get.lazyPut(() => ProfileController());
-        // currentWidget = ProfileScreen();
         break;
     }
   }
@@ -66,7 +65,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
   Widget homepage2() {
     return WillPopScope(
       onWillPop: () {
-        Get.offAllNamed(HomeScreen.routeName);
+        islog ? SystemNavigator.pop() : Get.offAllNamed(HomeScreen.routeName);
         return Future.delayed(Duration(microseconds: 0));
       },
       child: Material(
@@ -265,15 +264,12 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
                                       Text(
-                                        "Let's Play ",
+                                        "Leaderboard",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 40),
+                                            fontSize: 35),
                                       ),
                                     ],
                                   ),
@@ -281,8 +277,9 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                     padding:
                                         const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                     child: Image(
-                                        image: AssetImage(
-                                            'assets/images/baby_girl.png')),
+                                      image: AssetImage(
+                                          'assets/images/baby_girl.png'),
+                                    ),
                                   )
                                 ],
                               ),
@@ -300,8 +297,12 @@ class _HomeScreen1State extends State<HomeScreen1> {
                       color: Colors.lime[100],
                       child: InkWell(
                         onTap: () => {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => StoryPage()))
+                          Navigator.of(context).push(
+                            PageRouteBuilder(
+                              transitionDuration: Duration(milliseconds: 800),
+                              pageBuilder: (_, __, ___) => StoryPage(),
+                            ),
+                          )
                         },
                         child: SizedBox(
                           height: 180,
@@ -323,50 +324,50 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                         child: Text(
                                           "Story Of Baby Dinosaur",
                                           style: TextStyle(
-                                              color: Colors.green[900],
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 25,
-                                              fontFamily: 'Nunito'),
+                                            color: Colors.green[900],
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 30,
+                                          ),
                                         ),
                                       ),
                                       SizedBox(
                                         height: 15,
                                       ),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.timer_outlined,
-                                              color: Colors.orange,
-                                            ),
-                                            Text(
-                                              "15 Minutes",
-                                              style: TextStyle(
-                                                color: Colors.orange,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
-                                                fontFamily: 'Nunito',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      FittedBox(
-                                        child: Align(
-                                          alignment: Alignment.topLeft,
-                                          child: FittedBox(
-                                            child: Text(
-                                              "Uploaded on 22 Aug",
-                                              style: TextStyle(
-                                                color: Colors.green[900],
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                      // Align(
+                                      //   alignment: Alignment.topLeft,
+                                      //   child: Row(
+                                      //     children: [
+                                      //       Icon(
+                                      //         Icons.timer_outlined,
+                                      //         color: Colors.orange,
+                                      //       ),
+                                      //       Text(
+                                      //         "15 Minutes",
+                                      //         style: TextStyle(
+                                      //           color: Colors.orange,
+                                      //           fontWeight: FontWeight.bold,
+                                      //           fontSize: 20,
+                                      //           fontFamily: 'Nunito',
+                                      //         ),
+                                      //       ),
+                                      //     ],
+                                      //   ),
+                                      // ),
+                                      // FittedBox(
+                                      //   child: Align(
+                                      //     alignment: Alignment.topLeft,
+                                      //     child: FittedBox(
+                                      //       child: Text(
+                                      //         "Uploaded on 22 Aug",
+                                      //         style: TextStyle(
+                                      //           color: Colors.green[900],
+                                      //           fontWeight: FontWeight.bold,
+                                      //           fontSize: 20,
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -392,6 +393,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
 
   @override
   void initState() {
+    saveStringValue(islog);
     retrieveStringValue();
     setState(() {});
     super.initState();
@@ -464,43 +466,6 @@ class _HomeScreen1State extends State<HomeScreen1> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Padding(
-            // padding: const EdgeInsets.all(kMobileScreenPadding),
-            // child: Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //       const SizedBox(height: 40),
-            //       Padding(
-            //         padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-            //         child: Builder(
-            //           builder: (_) {
-            //             final AuthController _auth = Get.find();
-            //             final user = _auth.getUser();
-            //             String _label = 'Hello mate';
-            //             if (user != null) {
-            //               _label = 'Hello ${user.displayName}';
-            //             }
-            //             return Text(_label,
-            //                 style: TextStyle(
-            //                     color: Colors.grey,
-            //                     fontSize: 20,
-            //                     fontWeight: FontWeight.bold));
-            //           },
-            //         ),
-            //       ),
-            //       const SizedBox(height: 10),
-            //       Padding(
-            //         padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-            //         child: const Text("Let's Play  ",
-            //             style: TextStyle(
-            //                 color: Colors.black,
-            //                 fontSize: 30,
-            //                 fontWeight: FontWeight.bold)),
-            //       ),
-            //       const SizedBox(height: 10),
-            //     ],
-            //   ),
-            // ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),

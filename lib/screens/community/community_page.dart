@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, sized_box_for_whitespace, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -109,17 +109,17 @@ class _CommunityPageState extends State<CommunityPage> {
                           margin: EdgeInsets.fromLTRB(19, 0, 0, 5),
                           child: Row(
                             children: [
-                              Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Image.asset(
-                                      "assets/images/Rectangle 24.jpeg")),
-                              // Padding(
-                              //   padding: EdgeInsets.fromLTRB(0, 20, 0, 40),
-                              //   child: Image(
-                              //     image: AssetImage(
-                              //         "assets/images/Rectangle 24.jpeg"),
-                              //   ),
-                              // ),
+                              // Align(
+                              //     alignment: Alignment.topCenter,
+                              //     child: Image.asset(
+                              //         "assets/images/Rectangle 24.jpeg")),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 10, 20),
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/images/Rectangle 24.jpeg"),
+                                ),
+                              ),
                               SizedBox(
                                 width: 200,
                                 child: Column(
@@ -127,8 +127,8 @@ class _CommunityPageState extends State<CommunityPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 3,
+                                      width: 400,
+                                      //MediaQuery.of(context).size.width / 3,
                                       child: Text(
                                         "Why does my child asks a lot of questions?",
                                         style: TextStyle(
@@ -157,6 +157,13 @@ class _CommunityPageState extends State<CommunityPage> {
                                         fontSize: 8,
                                       ),
                                     ),
+                                    // Padding(
+                                    //   padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                    //   child: Image(
+                                    //     image: AssetImage(
+                                    //         "assets/images/Avatars.jpeg"),
+                                    //   ),
+                                    // ),
 
                                     // Text(
                                     //   'Lets do it!!',
@@ -166,6 +173,13 @@ class _CommunityPageState extends State<CommunityPage> {
                                     //       fontWeight: FontWeight.bold),
                                     // )
                                   ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(20, 0, 0, 50),
+                                child: Image(
+                                  image:
+                                      AssetImage("assets/images/Avatars.jpeg"),
                                 ),
                               ),
                             ],

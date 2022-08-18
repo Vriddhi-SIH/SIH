@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, no_leading_underscores_for_local_identifiers, sort_child_properties_last
 
 import 'package:easy_separator/easy_separator.dart';
 import 'package:flutter/material.dart';

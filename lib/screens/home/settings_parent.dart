@@ -1,11 +1,9 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_constructors_in_immutables, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controllers/controllers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'home_screen.dart';
 
 class ParentSettings extends StatefulWidget {
@@ -108,7 +106,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(MediaQuery.of(context).size.width, 50),
                       shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
                       backgroundColor: Colors.white,
                       elevation: 0,
@@ -327,7 +325,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                   side: BorderSide(width: 0.5),
-                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 elevation: 0,
                                 backgroundColor: Colors.red),

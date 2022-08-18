@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:easy_separator/easy_separator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

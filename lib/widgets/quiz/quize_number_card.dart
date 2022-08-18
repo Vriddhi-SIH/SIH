@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:sih_2022/configs/configs.dart';
 import 'package:sih_2022/widgets/widgets.dart';
@@ -48,7 +50,7 @@ class QuizNumberCard extends StatelessWidget {
                     : null),
           ),
         ),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10), 
         decoration: BoxDecoration(
             color: _backgroundColor,
             borderRadius: UIParameters.cardBorderRadius),
