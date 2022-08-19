@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_translator/google_translator.dart';
+
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import 'package:sih_2022/controllers/timeline/timeline_controller.dart';
 import 'package:timelines/timelines.dart';
-import 'package:transliteration/response/transliteration_response.dart';
-import 'package:transliteration/transliteration.dart';
+// import 'package:transliteration/response/transliteration_response.dart';
+// import 'package:transliteration/transliteration.dart';
 
 TextStyle st(Color colors) {
   return TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: colors);
@@ -19,14 +19,14 @@ class TimeLinePage extends StatelessWidget {
   static const routeName = "/timeline";
 
   final Controller = Get.put(TimeLineController());
-  Future<String> setHindi(Languages lan, String text) async {
-    TransliterationResponse? _response =
-        await Transliteration.transliterate(text, lan);
+  // Future<String> setHindi(Languages lan, String text) async {
+  //   TransliterationResponse? _response =
+  //       await Transliteration.transliterate(text, lan);
 
-    return lan == Languages.ENGLISH
-        ? text
-        : _response!.transliterationSuggestions[0];
-  }
+  //   return lan == Languages.ENGLISH
+  //       ? text
+  //       : _response!.transliterationSuggestions[0];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -53,26 +53,6 @@ class TimeLinePage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Nunito',
                           color: Colors.black),
-                    ).translate(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // ElevatedButton(
-                        //     onPressed: () async {
-                        //       Future.delayed(Duration(milliseconds: 10));
-                        //       Controller.getAllData("timelines2");
-                        //     },
-                        //     child: Text("Hindi")),
-                        // SizedBox(
-                        //   width: 20,
-                        // ),
-                        // ElevatedButton(
-                        //     onPressed: () {
-                        //       Future.delayed(Duration(milliseconds: 10));
-                        //       Controller.getAllData("timelines");
-                        //     },
-                        //     child: Text("English")),
-                      ],
                     ),
                   ],
                 ),

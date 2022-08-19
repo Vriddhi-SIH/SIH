@@ -44,7 +44,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _prefs = await SharedPreferences.getInstance();
     String? value = _prefs.getString("childname");
     setState(() {
-      childName = value as String;
+      if (value == null) {
+        childName = '';
+      } else {
+        childName = value;
+      }
     });
     setState(() {});
     await Future.delayed(Duration(seconds: 1));

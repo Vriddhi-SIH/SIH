@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:translator/translator.dart';
 
 class StoryPage extends StatelessWidget {
   const StoryPage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class StoryPage extends StatelessWidget {
             ),
             Hero(
               tag: 'hero',
+              // ignore: await_only_futures
               child: Text(
                 "Story of a Baby Dinasaur",
                 style: TextStyle(

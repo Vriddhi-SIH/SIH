@@ -13,7 +13,14 @@ class MusicPage extends StatefulWidget {
 class _MusicPageState extends State<MusicPage> {
   final audioPlayer = AudioPlayer();
   bool isPlaying = false;
-  bool isPlaying2 = false;
+  List<String> song = ['med1.mp3', 'med2.mp3', 'med3.mp3'];
+  List<String> sonngname = [
+    'Peaceful Garden',
+    'Volley Of Hope',
+    'Meditative Rain'
+  ];
+  String song2 = 'med1.mp3';
+  int i = 0;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
   @override
@@ -83,38 +90,97 @@ class _MusicPageState extends State<MusicPage> {
                 SizedBox(
                   height: 15,
                 ),
-                InkWell(
-                    onTap: () async {
-                      if (isPlaying2) {
-                        await Future.delayed(Duration(microseconds: 1));
-                        setState(() {
-                          isPlaying2 = false;
-                        });
-                      } else if (isPlaying) {
-                        await audioPlayer.pause();
-                      } else {
-                        setState(() {
-                          isPlaying2 = true;
-                        });
-                        String url =
-                            "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3";
-
-                        await audioPlayer.play(UrlSource(url));
-                      }
-                    },
-                    child: CircleAvatar(
-                        backgroundColor: Color.fromRGBO(255, 100, 100, 1),
-                        foregroundColor: Colors.grey[200],
-                        maxRadius: 35,
-                        child: isPlaying
-                            ? Icon(
-                                Icons.pause,
-                                size: 35,
-                              )
-                            : Icon(
-                                Icons.play_arrow,
+                Text(
+                  sonngname[i],
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                          onTap: () async {
+                            audioPlayer.pause();
+                            if (i == 0) {
+                              setState(() {
+                                audioPlayer.seek(Duration.zero);
+                                song2 = song[0];
+                                audioPlayer.play(AssetSource(song2));
+                              });
+                            } else {
+                              if (position >= Duration(seconds: 5)) {
+                                audioPlayer.seek(Duration.zero);
+                                song2 = song[i];
+                                audioPlayer.play(AssetSource(song2));
+                              } else {
+                                setState(() {
+                                  position = Duration.zero;
+                                  i = i - 1;
+                                  song2 = song[i];
+                                  audioPlayer.play(AssetSource(song2));
+                                });
+                              }
+                            }
+                          },
+                          child: CircleAvatar(
+                              backgroundColor: Color.fromRGBO(255, 100, 100, 1),
+                              foregroundColor: Colors.grey[200],
+                              maxRadius: 20,
+                              child: Icon(
+                                Icons.skip_previous,
                                 size: 35,
                               ))),
+                      InkWell(
+                          onTap: () async {
+                            if (isPlaying) {
+                              await audioPlayer.pause();
+                            } else {
+                              await audioPlayer.play(AssetSource(song2));
+                            }
+                          },
+                          child: CircleAvatar(
+                              backgroundColor: Color.fromRGBO(255, 100, 100, 1),
+                              foregroundColor: Colors.grey[200],
+                              maxRadius: 35,
+                              child: isPlaying
+                                  ? Icon(
+                                      Icons.pause,
+                                      size: 35,
+                                    )
+                                  : Icon(
+                                      Icons.play_arrow,
+                                      size: 35,
+                                    ))),
+                      InkWell(
+                          onTap: () async {
+                            audioPlayer.pause();
+                            if (i == song.length - 1) {
+                              setState(() {
+                                position = Duration.zero;
+                                song2 = song[0];
+                                audioPlayer.play(AssetSource(song2));
+                              });
+                            } else {
+                              setState(() {
+                                position = Duration.zero;
+                                i = i + 1;
+                                song2 = song[i];
+                                audioPlayer.play(AssetSource(song2));
+                              });
+                            }
+                          },
+                          child: CircleAvatar(
+                              backgroundColor: Color.fromRGBO(255, 100, 100, 1),
+                              foregroundColor: Colors.grey[200],
+                              maxRadius: 20,
+                              child: Icon(
+                                Icons.skip_next,
+                                size: 35,
+                              ))),
+                    ],
+                  ),
+                ),
                 Slider(
                     thumbColor: Color.fromRGBO(255, 100, 100, 1),
                     inactiveColor: Colors.grey[500],

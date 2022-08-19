@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'bindings/initial_binding.dart';
 import 'firebase_options.dart';
 import 'routes/app_routes.dart';
-import 'package:google_translator/google_translator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,22 +21,16 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-  // final String apiKey = "AIzaSyB2QG0lFPAddQAjAe8mfpTEE1lFki7mFtU";
-  final String apiKey = "f28540fe83msh7959b80dac26f8dp155f3cjsncacc7b69d352";
+
   @override
   Widget build(BuildContext context) {
-    return GoogleTranslatorInit(apiKey,
-        automaticDetection: true,
-        translateFrom: const Locale('en'),
-        translateTo: const Locale('hi'),
-        cacheDuration: const Duration(days: 13),
-        builder: () => GetMaterialApp(
-              theme: ThemeData(fontFamily: 'Nunito'),
-              navigatorKey: navigatorKey,
-              title: 'Flutter Demo',
-              getPages: AppRoutes.pages(),
-              debugShowCheckedModeBanner: false,
-            ));
+    return GetMaterialApp(
+      theme: ThemeData(fontFamily: 'Nunito'),
+      navigatorKey: navigatorKey,
+      title: 'Vriddhi',
+      getPages: AppRoutes.pages(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 

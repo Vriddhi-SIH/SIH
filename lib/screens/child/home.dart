@@ -13,6 +13,7 @@ import 'package:sih_2022/screens/games/game_page.dart';
 import 'package:sih_2022/screens/home/home_screen.dart';
 import 'package:sih_2022/screens/home/story_screen.dart';
 import 'package:sih_2022/widgets/widgets.dart';
+import 'package:iconsax/iconsax.dart';
 
 class HomeScreen1 extends StatefulWidget {
   HomeScreen1({Key? key}) : super(key: key);
@@ -35,7 +36,11 @@ class _HomeScreen1State extends State<HomeScreen1> {
     _prefs = await SharedPreferences.getInstance();
     String? value = _prefs.getString("childname");
     setState(() {
-      childName = value as String;
+      if (value == null) {
+        childName = '';
+      } else {
+        childName = value;
+      }
     });
     currentWidget = homepage2();
     await Future.delayed(Duration(seconds: 1));
@@ -141,7 +146,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           },
                           child: SizedBox(
                             height: 170,
-                            width: 400,
+                            width: MediaQuery.of(context).size.width,
                             child: Container(
                               width: 400 / 2.5,
                               margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
@@ -155,12 +160,14 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Text(
-                                        "Let's Play ",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 40),
+                                      Container(
+                                        child: Text(
+                                          "Let's Play ",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 35),
+                                        ),
                                       ),
                                       SizedBox(
                                         height: 5,
@@ -200,12 +207,14 @@ class _HomeScreen1State extends State<HomeScreen1> {
                         },
                         child: SizedBox(
                           height: 170,
-                          width: 400,
+                          width: MediaQuery.of(context).size.width,
                           child: Container(
                             // margin: EdgeInsets.fromLTRB(19, 5, 0, 5),
                             child: Row(
                               children: [
                                 Image(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2.5,
                                     image:
                                         AssetImage('assets/images/pencil.png')),
                                 Column(
@@ -242,48 +251,35 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           borderRadius: BorderRadius.circular(30)),
                       color: Color.fromRGBO(249, 184, 128, 1),
                       child: InkWell(
-                        onTap: () => {},
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              currentindex = 2;
-                            });
-                            loadScreen();
-                            setState(() {});
-                          },
-                          child: SizedBox(
-                            height: 150,
-                            width: 400,
-                            child: Container(
-                              width: 400 / 2.5,
-                              margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
-                              child: Row(
+                        onTap: () {
+                          setState(() {});
+                        },
+                        child: SizedBox(
+                          height: 150,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Leaderboard",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 35),
-                                      ),
-                                    ],
+                                  Text(
+                                    "Leaderboard",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 35),
                                   ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                    child: Image(
-                                      image: AssetImage(
-                                          'assets/images/baby_girl.png'),
-                                    ),
-                                  )
                                 ],
                               ),
-                            ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                child: Image(
+                                  image:
+                                      AssetImage('assets/images/baby_girl.png'),
+                                ),
+                              )
+                            ],
                           ),
                         ),
                       ),
@@ -315,7 +311,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                 Container(
                                   constraints: BoxConstraints(maxWidth: 135.5),
                                   width:
-                                      MediaQuery.of(context).size.width / 3.0,
+                                      MediaQuery.of(context).size.width / 2.9,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -427,23 +423,26 @@ class _HomeScreen1State extends State<HomeScreen1> {
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: Icon(
-                  Icons.home_outlined,
+                  Iconsax.home,
                 ),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: Icon(Icons.assignment_turned_in_outlined),
+                icon: Icon(Iconsax.document),
                 label: 'Tests',
               ),
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: Icon(Icons.control_camera),
+                icon: Icon(
+                  Iconsax.game,
+                  size: 30,
+                ),
                 label: 'Games',
               ),
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: Icon(Icons.settings_outlined),
+                icon: Icon(Iconsax.setting),
                 label: 'Settings',
               ),
             ],

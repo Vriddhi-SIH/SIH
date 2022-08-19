@@ -29,9 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
         Get.offAllNamed(HomeScreen.routeName);
         return Future.delayed(Duration(microseconds: 2));
       },
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        body: Container(
+      child: Material(
+        child: Container(
             constraints: const BoxConstraints(maxWidth: kTabletChangePoint),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             alignment: Alignment.center,
@@ -83,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   bottomLeft: Radius.circular(8)),
                               border: Border.all(color: Colors.black38),
                               color: onchanged ? Colors.red : Colors.white),
-                          width: 176,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 60,
                           // color: Colors.red,
                           child: Center(
@@ -105,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() {});
                         },
                         child: Container(
-                          width: 176,
+                          width: MediaQuery.of(context).size.width / 2.3,
                           height: 60,
                           decoration: BoxDecoration(
                               boxShadow: [
@@ -176,6 +175,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   SizedBox(
+                    height: 20,
+                  ),
+                  Container(
                     height: 40,
                     width: 120,
                     child: ElevatedButton(

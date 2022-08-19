@@ -23,22 +23,6 @@ class _ParentSettingsState extends State<ParentSettings> {
   String newPass = "hello";
   String oldPass = '';
   String newPass2 = '';
-  bool isSwitched = false;
-  var textValue = 'Switch is OFF';
-
-  void toggleSwitch(bool value) {
-    if (isSwitched == false) {
-      setState(() {
-        isSwitched = true;
-        textValue = 'Switch Button is ON';
-      });
-    } else {
-      setState(() {
-        isSwitched = false;
-        textValue = 'Switch Button is OFF';
-      });
-    }
-  }
 
   saveStringValue2(String name) async {
     _prefs = await SharedPreferences.getInstance();
@@ -71,8 +55,6 @@ class _ParentSettingsState extends State<ParentSettings> {
 
   @override
   void initState() {
-    retrieveStringValue();
-
     setState(() {});
     super.initState();
   }
@@ -142,7 +124,10 @@ class _ParentSettingsState extends State<ParentSettings> {
                               onPressed: () {
                                 setState(() {
                                   saveStringValue(name2);
+                                });
+                                setState(() {
                                   retrieveStringValue();
+
                                   Navigator.pop(context, 'Cancel');
                                 });
                               },
@@ -335,124 +320,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 250,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Allowed Content",
-                              style: TextStyle(
-                                fontSize: 20,
-                                // fontWeight: FontWeight.bold,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Games',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Transform.scale(
-                                      scale: 1.5,
-                                      child: Switch(
-                                        onChanged: toggleSwitch,
-                                        value: isSwitched,
-                                        activeColor: Colors.red,
-                                        activeTrackColor: Colors.grey,
-                                        inactiveThumbColor: Colors.red,
-                                        inactiveTrackColor: Colors.grey,
-                                      )),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Games',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Transform.scale(
-                                      scale: 1.5,
-                                      child: Switch(
-                                        onChanged: toggleSwitch,
-                                        value: isSwitched,
-                                        activeColor: Colors.red,
-                                        activeTrackColor: Colors.grey,
-                                        inactiveThumbColor: Colors.red,
-                                        inactiveTrackColor: Colors.grey,
-                                      )),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Games',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Transform.scale(
-                                      scale: 1.5,
-                                      child: Switch(
-                                        onChanged: toggleSwitch,
-                                        value: false,
-                                        activeColor: Colors.red,
-                                        activeTrackColor: Colors.grey,
-                                        inactiveThumbColor: Colors.red,
-                                        inactiveTrackColor: Colors.grey,
-                                      )),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Games',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                  Transform.scale(
-                                      scale: 1.5,
-                                      child: Switch(
-                                        onChanged: toggleSwitch,
-                                        value: false,
-                                        activeColor: Colors.red,
-                                        activeTrackColor: Colors.grey,
-                                        inactiveThumbColor: Colors.red,
-                                        inactiveTrackColor: Colors.grey,
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )),
-                  SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   Container(
                     height: 60,

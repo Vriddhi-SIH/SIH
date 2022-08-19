@@ -12,10 +12,12 @@ import 'package:sih_2022/widgets/widgets.dart';
 
 class AuthController extends GetxController {
   late SharedPreferences _prefs;
-  bool islog = true;
+  bool islog = false;
+
   @override
   void onReady() {
     retrieveStringValue();
+    retrieveBoolValue();
     initAuth();
     super.onReady();
   }
@@ -23,8 +25,30 @@ class AuthController extends GetxController {
   retrieveStringValue() async {
     _prefs = await SharedPreferences.getInstance();
     bool? value = _prefs.getBool("childlof");
-    islog = value as bool;
+    if (value == null) {
+      islog = false;
+    } else {
+      islog = value;
+    }
+
     Future.delayed(Duration(seconds: 1));
+  }
+
+  bool isSwitched = false;
+  bool isSwitched2 = false;
+
+  retrieveBoolValue() async {
+    _prefs = await SharedPreferences.getInstance();
+
+    bool? value2 = _prefs.getBool("specialyabled");
+
+    if (value2 == null) {
+      isSwitched2 = false;
+    } else {
+      isSwitched2 = value2;
+    }
+
+    Future.delayed(Duration(seconds: 3));
   }
 
   late FirebaseAuth _auth;
