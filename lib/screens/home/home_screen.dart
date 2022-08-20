@@ -15,6 +15,8 @@ import 'package:sih_2022/screens/mental_health/mental_health.dart';
 import 'package:sih_2022/screens/parental_control/parental_control.dart';
 import 'package:sih_2022/screens/timeline/timeline.dart';
 
+import '../specially abled/homepage.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
   static const String routeName = '/home';
@@ -307,10 +309,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: InkWell(
                               onTap: () {
                                 setState(() {
-                                  currentindex = 2;
+                                  currentWidget = SpeciallyAbledPage();
                                 });
-                                loadScreen();
-                                setState(() {});
                               },
                               child: SizedBox(
                                 height: 140,
