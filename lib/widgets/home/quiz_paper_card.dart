@@ -73,13 +73,6 @@ class QuizPaperCard extends GetView<QuizPaperController> {
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold),
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(top: 10, bottom: 15),
-                          //   child: Text(
-                          //     model.description,
-                          //     style: TextStyle(color: Colors.red),
-                          //   ),
-                          // ),
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             child: EasySeparatedRow(
@@ -114,34 +107,33 @@ class QuizPaperCard extends GetView<QuizPaperController> {
                       ))
                     ],
                   ),
-                  Positioned(
-                      bottom: -_padding,
-                      right: -_padding,
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        child: GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: () {
-                            // Get.find<NotificationService>().showQuizCompletedNotification(id: 1, title: 'Sampole', body: 'Sample', imageUrl: model.imageUrl, payload: json.encode(model.toJson())  );
-                            Get.toNamed(LeaderBoardScreen.routeName,
-                                arguments: model);
-                          },
-                          child: Ink(
-                            child: Icon(
-                              AppIcons.trophyoutline,
-                              size: 20,
-                              color: Colors.white,
-                            ),
-                            decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomRight:
-                                        Radius.circular(kCardBorderrRadius)),
-                                color: Theme.of(context).primaryColor),
-                          ),
-                        ),
-                      ))
+                  // Positioned(
+                  //     bottom: -_padding,
+                  //     right: -_padding,
+                  //     child: Container(
+                  //       width: 30,
+                  //       height: 30,
+                  //       child: GestureDetector(
+                  //         behavior: HitTestBehavior.translucent,
+                  //         onTap: () {
+                  //           Get.toNamed(LeaderBoardScreen.routeName,
+                  //               arguments: model);
+                  //         },
+                  //         child: Ink(
+                  //           child: Icon(
+                  //             AppIcons.trophyoutline,
+                  //             size: 20,
+                  //             color: Colors.white,
+                  //           ),
+                  //           decoration: BoxDecoration(
+                  //               borderRadius: const BorderRadius.only(
+                  //                   topLeft: Radius.circular(10),
+                  //                   bottomRight:
+                  //                       Radius.circular(kCardBorderrRadius)),
+                  //               color: Theme.of(context).primaryColor),
+                  //         ),
+                  //       ),
+                  //     ))
                 ],
               )),
         ),

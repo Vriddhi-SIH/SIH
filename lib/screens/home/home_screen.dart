@@ -9,13 +9,14 @@ import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/screens/auth_and_profile/profile_screen.dart';
 import 'package:sih_2022/screens/child/home.dart';
 import 'package:sih_2022/screens/community/community_pag.dart';
-import 'package:sih_2022/screens/home/article_screen.dart/article_page.dart';
+
 import 'package:sih_2022/screens/home/settings_parent.dart';
 import 'package:sih_2022/screens/mental_health/mental_health.dart';
 import 'package:sih_2022/screens/parental_control/parental_control.dart';
 import 'package:sih_2022/screens/timeline/timeline.dart';
-
+import 'package:sih_2022/screens/physical_health/lib/page/home_page.dart';
 import '../specially abled/homepage.dart';
+import 'article_screen.dart/article_page3.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -492,7 +493,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "Commuity Forum",
+                                    "Commuinity Forum",
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -548,10 +549,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ArticlePage()));
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => ArticleSection()));
+                        currentWidget = ArticleSection();
                       });
-                      loadScreen();
+                      // loadScreen();
                       setState(() {});
                     },
                     child: SizedBox(
@@ -624,70 +626,65 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(30)),
                   color: Color.fromRGBO(175, 220, 154, 1),
                   child: InkWell(
-                    onTap: () => {},
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {});
-                        loadScreen();
-                        setState(() {});
-                      },
-                      child: SizedBox(
-                        height: 140,
-                        width: 400,
-                        child: Container(
-                          width: 400 / 2.5,
-                          margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
-                          child: Row(
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 200,
-                                    child: Text(
-                                      "Physical Health",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20),
-                                    ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PhysicalHealthPage()));
+                    },
+                    child: SizedBox(
+                      height: 140,
+                      width: 400,
+                      child: Container(
+                        width: 400 / 2.5,
+                        margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
+                        child: Row(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 200,
+                                  child: Text(
+                                    "Physical Health",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.55,
-                                    child: Text(
-                                      "Check out exercises you can do with your child",
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromARGB(182, 46, 46, 46),
-                                          fontSize: 15),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    width: 200,
-                                    child: Text(
-                                      "30 minutes spent today",
-                                      style: TextStyle(
-                                          fontSize: 13, color: Colors.black87),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: Image(
-                                  image: AssetImage("assets/images/yoga.png"),
                                 ),
-                              )
-                            ],
-                          ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.55,
+                                  child: Text(
+                                    "Check out exercises you can do with your child",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(182, 46, 46, 46),
+                                        fontSize: 15),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  width: 200,
+                                  child: Text(
+                                    "30 minutes spent today",
+                                    style: TextStyle(
+                                        fontSize: 13, color: Colors.black87),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              child: Image(
+                                image: AssetImage("assets/images/yoga.png"),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),

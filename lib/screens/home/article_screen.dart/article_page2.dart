@@ -33,9 +33,21 @@ class ArticlePage2 extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                Text(
-                  "${productController.productData[index2].mainDes}",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w200),
+                productController.productData[index2].imageUrl == null
+                    ? SizedBox()
+                    : Image(
+                        image: NetworkImage(productController
+                            .productData[index2].imageUrl as String)),
+                SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: Text(
+                    "${productController.productData[index2].mainDes}",
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w200),
+                  ),
                 ),
               ],
             ),

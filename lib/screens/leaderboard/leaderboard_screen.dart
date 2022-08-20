@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
+import 'dart:math';
+
 import 'package:easy_separator/easy_separator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -42,14 +44,23 @@ class LeaderBoardScreen extends GetView<LeaderBoardController> {
                   child: ListView.separated(
                     itemCount: controller.leaderBoard.length,
                     separatorBuilder: (BuildContext context, int index) {
-                      return const Divider();
+                      return SizedBox();
                     },
                     itemBuilder: (BuildContext context, int index) {
                       final data = controller.leaderBoard[index];
 
-                      return LeaderBoardCard(
-                        data: data,
-                        index: index,
+                      return Column(
+                        children: [
+                          index == 0
+                              ? SizedBox(
+                                  height: 20,
+                                )
+                              : SizedBox(),
+                          LeaderBoardCard(
+                            data: data,
+                            index: index,
+                          ),
+                        ],
                       );
                     },
                   ),
@@ -61,7 +72,7 @@ class LeaderBoardScreen extends GetView<LeaderBoardController> {
 }
 
 class LeaderBoardCard extends StatelessWidget {
-  const LeaderBoardCard({
+  LeaderBoardCard({
     Key? key,
     required this.data,
     required this.index,
@@ -73,58 +84,64 @@ class LeaderBoardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const tsStyle = TextStyle(fontWeight: FontWeight.bold);
-    return ListTile(
-      leading: CircleAvatar(
-        foregroundImage:
-            data.user.image == null ? null : NetworkImage(data.user.image!),
-      ),
-      title: Text(
-        data.user.name,
-        style: tsStyle,
-      ),
-      subtitle: EasySeparatedRow(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(
-            width: 12,
-          );
-        },
-        children: [
-          IconWithText(
-            icon: Icon(
-              Icons.done_all,
-              color: Theme.of(context).primaryColor,
+    return Container(
+      height: 100,
+      decoration: BoxDecoration(
+          color: Colors.primaries[Random().nextInt(Colors.primaries.length)]
+              .withOpacity(0.5)),
+      child: ListTile(
+        leading: CircleAvatar(
+          foregroundImage:
+              data.user.image == null ? null : NetworkImage(data.user.image!),
+        ),
+        title: Text(
+          data.user.name,
+          style: tsStyle,
+        ),
+        subtitle: EasySeparatedRow(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          separatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(
+              width: 12,
+            );
+          },
+          children: [
+            IconWithText(
+              icon: Icon(
+                Icons.done_all,
+                color: Theme.of(context).primaryColor,
+              ),
+              text: Text(
+                data.correctCount!,
+                style: tsStyle,
+              ),
             ),
-            text: Text(
-              data.correctCount!,
-              style: tsStyle,
+            IconWithText(
+              icon: Icon(
+                Icons.timer,
+                color: Theme.of(context).primaryColor,
+              ),
+              text: Text(
+                '${data.time!}',
+                style: tsStyle,
+              ),
             ),
-          ),
-          IconWithText(
-            icon: Icon(
-              Icons.timer,
-              color: Theme.of(context).primaryColor,
+            IconWithText(
+              icon: Icon(
+                Icons.emoji_events_outlined,
+                color: Theme.of(context).primaryColor,
+              ),
+              text: Text(
+                '${data.points!}',
+                style: tsStyle,
+              ),
             ),
-            text: Text(
-              '${data.time!}',
-              style: tsStyle,
-            ),
-          ),
-          IconWithText(
-            icon: Icon(
-              Icons.emoji_events_outlined,
-              color: Theme.of(context).primaryColor,
-            ),
-            text: Text(
-              '${data.points!}',
-              style: tsStyle,
-            ),
-          ),
-        ],
-      ),
-      trailing: Text(
-        '#' + '${index + 1}'.padLeft(2, "0"),
-        style: tsStyle,
+          ],
+        ),
+        trailing: Text(
+          '#' + '${index + 1}'.padLeft(2, "0"),
+          style: tsStyle,
+        ),
       ),
     );
   }

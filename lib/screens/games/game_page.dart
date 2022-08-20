@@ -68,7 +68,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -104,7 +104,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -140,7 +140,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -181,7 +181,7 @@ class _GamePageState extends State<GamePage> {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: 90,
                               child: Text(
                                 "Music Tile Game",
@@ -216,7 +216,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -252,7 +252,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -296,7 +296,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -332,7 +332,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -368,7 +368,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -412,7 +412,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -448,7 +448,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",
@@ -484,7 +484,7 @@ class _GamePageState extends State<GamePage> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 90,
                                 child: Text(
                                   "Music Tile Game",

@@ -10,21 +10,9 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(color: Colors.amber),
-        child: Column(
-          children: [
-            Image(image: AssetImage("assets/images/app_splash_logo.png")),
-            Text(
-              "WELCOME",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+      body: Image(
+        image: AssetImage("assets/images/Loader.png"),
+        fit: BoxFit.cover,
       ),
     );
   }

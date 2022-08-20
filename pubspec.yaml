@@ -44,6 +44,9 @@ dependencies:
   shared_preferences: ^2.0.15
   iconsax: ^0.0.8
   restart_app: ^1.1.0+1
+  video_player: ^2.4.6
+  fl_chart: ^0.55.1
+  text_to_speech: ^0.2.3
 
  
  

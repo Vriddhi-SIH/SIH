@@ -11,9 +11,14 @@ import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/screens/child/settings.dart';
 import 'package:sih_2022/screens/games/game_page.dart';
 import 'package:sih_2022/screens/home/home_screen.dart';
+import 'package:sih_2022/screens/home/settings_parent.dart';
 import 'package:sih_2022/screens/home/story_screen.dart';
+import 'package:sih_2022/screens/leaderboard/leaderboard_screen.dart';
 import 'package:sih_2022/widgets/widgets.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../controllers/avatars/avatar_controller.dart';
+import 'leaderboard.dart';
 
 class HomeScreen1 extends StatefulWidget {
   HomeScreen1({Key? key}) : super(key: key);
@@ -46,10 +51,26 @@ class _HomeScreen1State extends State<HomeScreen1> {
     await Future.delayed(Duration(seconds: 1));
   }
 
+  String avatar = '';
+  retrieveStringValue2() async {
+    _prefs = await SharedPreferences.getInstance();
+    String? value = _prefs.getString("avatar");
+    setState(() {
+      if (value == null) {
+      } else {
+        avatar = value as String;
+      }
+    });
+    currentWidget = homepage2();
+    Future.delayed(Duration(seconds: 1));
+    setState(() {});
+  }
+
   String childName = '';
   void loadScreen() {
     switch (currentindex) {
       case 0:
+        retrieveStringValue2();
         currentWidget = homepage2();
         break;
       case 1:
@@ -61,6 +82,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
         currentWidget = GamePage();
         break;
       case 3:
+        Get.lazyPut(() => AvatarController());
         currentWidget = SettingsPage();
 
         break;
@@ -92,12 +114,42 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                             child: Text(
-                              "Hello Little",
-                              // "Hello Little 👋 ",
+                              // "Hello Little",
+                              "Hello Little 👋 ",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                currentindex = 3;
+                              });
+
+                              loadScreen();
+                            },
+                            child: Container(
+                              // color: Colors.redAccent,
+                              width: 65,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(35)),
+                              child: Column(
+                                children: [
+                                  avatar == ''
+                                      ? Container()
+                                      : Image(
+                                          height: 60,
+                                          width: 60,
+                                          image: NetworkImage(avatar)),
+                                  SizedBox(
+                                    height: 5,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -252,7 +304,9 @@ class _HomeScreen1State extends State<HomeScreen1> {
                       color: Color.fromRGBO(249, 184, 128, 1),
                       child: InkWell(
                         onTap: () {
-                          setState(() {});
+                          setState(() {
+                            currentWidget = LeaderBoardPage();
+                          });
                         },
                         child: SizedBox(
                           height: 150,
@@ -391,6 +445,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
   void initState() {
     saveStringValue(islog);
     retrieveStringValue();
+    retrieveStringValue2();
     setState(() {});
     super.initState();
   }

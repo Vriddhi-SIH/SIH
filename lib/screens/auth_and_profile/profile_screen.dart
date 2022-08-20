@@ -27,19 +27,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final contro = Get.put(PieChartController());
   late SharedPreferences _prefs;
   String childName = '';
+  String avatar = '';
+  retrieveStringValue2() async {
+    _prefs = await SharedPreferences.getInstance();
+    String? value = _prefs.getString("avatar");
+    setState(() {
+      if (value == null) {
+      } else {
+        avatar = value as String;
+      }
+    });
 
-  // late double physics = 0;
-  // double chemistry = 0;
-  // double maths = 0;
-  // double history = 0;
-  // double english = 0;
+    Future.delayed(Duration(seconds: 1));
+    setState(() {});
+  }
 
-  // late String physics1 = '';
-  // late String chemistry1 = '';
-  // late String maths1 = '';
-  // String history1 = '';
-
-  // String english1 = '';
   retrieveStringValue() async {
     _prefs = await SharedPreferences.getInstance();
     String? value = _prefs.getString("childname");
@@ -58,6 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 10));
     retrieveStringValue();
+    retrieveStringValue2();
     setState(() {
       contro.getAllData();
     });
@@ -105,17 +108,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // @override
-  // void initState() {
-  //   Future.delayed(Duration(milliseconds: 2));
-
-  //   setState(() {});
-  //   loading = false;
-  //   setState(() {});
-
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final AuthController _auth = Get.find<AuthController>();
@@ -127,7 +119,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
       child: Material(
         child: Scaffold(
-          extendBodyBehindAppBar: true,
           body: Container(
             color: Colors.grey[100],
             child: Column(
@@ -156,9 +147,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   radius: 30,
                                   foregroundImage: _auth.getUser() == null
                                       ? null
-                                      : NetworkImage(
-                                          _auth.getUser()!.photoURL!),
-                                  backgroundColor: Colors.white,
+                                      : avatar == ''
+                                          ? NetworkImage(
+                                              _auth.getUser()!.photoURL!)
+                                          : NetworkImage(avatar),
+                                  backgroundColor: Colors.grey,
                                 ),
                                 const SizedBox(
                                   width: 20,
