@@ -9,6 +9,7 @@ import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/screens/auth_and_profile/profile_screen.dart';
 import 'package:sih_2022/screens/child/home.dart';
 import 'package:sih_2022/screens/community/community_pag.dart';
+import 'package:sih_2022/screens/home/new_page.dart';
 
 import 'package:sih_2022/screens/home/settings_parent.dart';
 import 'package:sih_2022/screens/mental_health/mental_health.dart';
@@ -38,6 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
   saveBoolValue2(bool name) async {
     _prefs = await SharedPreferences.getInstance();
     _prefs.setBool('newUser', false);
+  }
+
+  bool isSwitched = false;
+  bool isSwitched2 = false;
+
+  retrieveBoolValue2() async {
+    _prefs = await SharedPreferences.getInstance();
+
+    bool? value2 = _prefs.getBool("specialyabled");
+
+    if (value2 == null) {
+      isSwitched2 = false;
+    } else {
+      isSwitched2 = value2;
+    }
+    currentWidget = homepage3();
+    Future.delayed(Duration(seconds: 3));
   }
 
   retrieveBoolValue() async {
@@ -117,6 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (currentindex) {
       case 0:
         setState(() {
+          retrieveStringValue();
+          retrieveStringValue2();
+          retrieveBoolValue();
+          retrieveBoolValue2();
           currentWidget = homepage3();
         });
         break;
@@ -297,9 +319,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                _auth.isSwitched2 == null
+                isSwitched2 == null
                     ? SizedBox()
-                    : _auth.isSwitched2 == true
+                    : isSwitched2 == true
                         ? Card(
                             margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                             elevation: 5.00,
@@ -351,7 +373,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .width *
                                                   0.4,
                                               child: Text(
-                                                "45 minutes speent today",
+                                                "45 minutes spent today",
                                                 style: TextStyle(
                                                     color: Color.fromARGB(
                                                         182, 46, 46, 46),
@@ -397,7 +419,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         currentindex = 2;
                       });
                       loadScreen();
-                      setState(() {});
+                      // Navigator.of(context).push(
+                      //     MaterialPageRoute(builder: ((context) => NewPage())));
                     },
                     child: SizedBox(
                       height: 140,
@@ -431,7 +454,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.4,
                                     child: Text(
-                                      "45 minutes speent today",
+                                      "45 minutes spent today",
                                       style: TextStyle(
                                           color:
                                               Color.fromARGB(182, 46, 46, 46),
@@ -936,6 +959,7 @@ class _HomeScreenState extends State<HomeScreen> {
       retrieveStringValue2();
       saveStringValue(islog);
       retrieveBoolValue();
+      retrieveBoolValue2();
     });
 
     // setState(() {

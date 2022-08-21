@@ -17,7 +17,7 @@ class AuthController extends GetxController {
   @override
   void onReady() {
     retrieveStringValue();
-    retrieveBoolValue();
+    // retrieveBoolValue();
     initAuth();
     super.onReady();
   }
@@ -34,29 +34,12 @@ class AuthController extends GetxController {
     Future.delayed(Duration(seconds: 1));
   }
 
-  bool isSwitched = false;
-  bool isSwitched2 = false;
-
-  retrieveBoolValue() async {
-    _prefs = await SharedPreferences.getInstance();
-
-    bool? value2 = _prefs.getBool("specialyabled");
-
-    if (value2 == null) {
-      isSwitched2 = false;
-    } else {
-      isSwitched2 = value2;
-    }
-
-    Future.delayed(Duration(seconds: 3));
-  }
-
   late FirebaseAuth _auth;
   final _user = Rxn<User>();
   late Stream<User?> _authStateChanges;
 
   void initAuth() async {
-    await Future.delayed(const Duration(seconds: 2));
+    Future.delayed(const Duration(seconds: 2));
     _auth = FirebaseAuth.instance;
     _authStateChanges = _auth.authStateChanges();
     _authStateChanges.listen((User? user) {

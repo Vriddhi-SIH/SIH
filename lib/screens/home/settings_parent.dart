@@ -45,6 +45,17 @@ class _ParentSettingsState extends State<ParentSettings> {
     setState(() {});
   }
 
+  // retrieveStringValue2() async {
+  //   _prefs = await SharedPreferences.getInstance();
+  //   String? value = _prefs.getString("password");
+  //   setState(() {
+  //     newPass = value as String;
+  //   });
+  //   print(newPass);
+  //   Future.delayed(Duration(seconds: 1));
+  //   setState(() {});
+  // }
+
   final List<String> _mesaures = [
     'English',
     'Hindi',
@@ -127,7 +138,6 @@ class _ParentSettingsState extends State<ParentSettings> {
                                 });
                                 setState(() {
                                   retrieveStringValue();
-
                                   Navigator.pop(context, 'Cancel');
                                 });
                               },
@@ -279,6 +289,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                           ElevatedButton(
                             onPressed: () {
                               saveStringValue2(oldPass);
+                              // retrieveStringValue2();
                               setState(() {});
                               oldPass.toString() == 'hello'
                                   ? showDialog<String>(

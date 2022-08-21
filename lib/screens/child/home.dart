@@ -512,46 +512,47 @@ class _HomeScreen1State extends State<HomeScreen1> {
         Get.offAllNamed(HomeScreen1.routeName);
         return Future.delayed(Duration(microseconds: 0));
       },
-      child: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/gamepage2.png'))),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: ContentArea(
-                  addPadding: false,
-                  child: Obx(
-                    () => LiquidPullToRefresh(
-                      height: 150,
-                      springAnimationDurationInMilliseconds: 500,
-                      color: Colors.red[100],
-                      onRefresh: () async {
-                        _quizePprContoller.getAllPapers();
-                      },
-                      child: ListView.separated(
-                        padding: UIParameters.screenPadding,
-                        shrinkWrap: true,
-                        itemCount: _quizePprContoller.allPapers.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return QuizPaperCard(
-                            model: _quizePprContoller.allPapers[index],
-                          );
+      child: Material(
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/gamepage2.png'))),
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: ContentArea(
+                    addPadding: false,
+                    child: Obx(
+                      () => LiquidPullToRefresh(
+                        height: 150,
+                        springAnimationDurationInMilliseconds: 500,
+                        color: Colors.red[100],
+                        onRefresh: () async {
+                          _quizePprContoller.getAllPapers();
                         },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(height: 20);
-                        },
+                        child: ListView.separated(
+                          padding: UIParameters.screenPadding,
+                          shrinkWrap: true,
+                          itemCount: _quizePprContoller.allPapers.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return QuizPaperCard(
+                              model: _quizePprContoller.allPapers[index],
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(height: 20);
+                          },
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

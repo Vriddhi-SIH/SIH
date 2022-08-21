@@ -47,6 +47,20 @@ dependencies:
   video_player: ^2.4.6
   fl_chart: ^0.55.1
   text_to_speech: ^0.2.3
+  flutter_riverpod: ^1.0.4
+
+  # Generate Unique Id
+  uuid: ^3.0.6
+
+  # Easily detect Swipes
+  flutter_swipe_detector: ^2.0.0
+
+  #key-value database which we will use to save game state
+  hive: ^2.1.1
+  hive_flutter: ^1.1.0
+
+  # Used together with json_serializable to generate fromJson/toJson functions
+  json_annotation: ^4.5.0
 
  
  
@@ -58,6 +72,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  build_runner: ^2.1.11
+
+  # Used together with json_serializable to generate fromJson/toJson functions
+  json_serializable: ^6.2.0
 
   
 

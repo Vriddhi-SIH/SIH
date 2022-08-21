@@ -70,23 +70,27 @@ class Question {
   List<Answer> answers;
   final String? correctAnswer;
   String? selectedAnswer;
+  final String? solution;
 
   Question({
     required this.id,
     required this.question,
     required this.answers,
     this.correctAnswer,
+    this.solution,
   });
 
   Question.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
       : id = snapshot.id,
         question = snapshot['question'],
         answers = [],
-        correctAnswer = snapshot['correct_answer'];
+        correctAnswer = snapshot['correct_answer'],
+        solution = snapshot['solution'];
 
   Question.fromJson(Map<String, dynamic> json)
       : id = json['id'] as String,
         question = json['question'] as String,
+        solution = json['solution'] as String,
         answers =
             (json['answers'] as List).map((e) => Answer.fromJson(e)).toList(),
         correctAnswer = json['correct_answer'] as String?;
@@ -95,7 +99,8 @@ class Question {
         'id': id,
         'question': question,
         // 'answers' : answers.toJson(),
-        'correct_answer': correctAnswer
+        'correct_answer': correctAnswer,
+        'solution': solution
       };
 }
 

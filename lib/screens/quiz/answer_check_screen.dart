@@ -19,7 +19,10 @@ class AnswersCheckScreen extends GetView<QuizController> {
       appBar: CustomAppBar(
         titleWidget: Obx(() => Text(
               'Q. ${(controller.questionIndex.value + 1).toString().padLeft(2, '0')}',
-              style: TextStyle(color: Colors.red, fontSize: 20),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
             )),
         showActionIcon: true,
         onMenuActionTap: () {
@@ -29,6 +32,9 @@ class AnswersCheckScreen extends GetView<QuizController> {
       body: Obx(
         () => Column(
           children: [
+            SizedBox(
+              height: 50,
+            ),
             Expanded(
               child: ContentArea(
                 child: SingleChildScrollView(
@@ -85,6 +91,10 @@ class AnswersCheckScreen extends GetView<QuizController> {
                               },
                             );
                           }),
+                      Text(
+                        controller.currentQuestion.value!.solution as String,
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
                     ],
                   ),
                 ),

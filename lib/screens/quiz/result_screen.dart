@@ -22,12 +22,16 @@ class Resultcreen extends GetView<QuizController> {
       onWillPop: () async {
         return false;
       },
-      child: Scaffold(
-        body: Column(
+      child: Material(
+        color: Colors.pink[50],
+        child: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             CustomAppBar(
               leading: const SizedBox(
-                height: kToolbarHeight,
+                height: 40,
               ),
               title: controller.correctAnsweredQuestions,
             ),
@@ -37,21 +41,10 @@ class Resultcreen extends GetView<QuizController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                      height: 200,
-                      width: 200,
-                      child: SvgPicture.asset(
-                        'assets/images/app_splash_logo.svg',
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 5),
-                    child: Text(
-                      'Congratulations',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                      height: 350,
+                      width: 400,
+                      child: Image.network(
+                          'https://firebasestorage.googleapis.com/v0/b/quizx-fb763.appspot.com/o/images%2Ftrophy-removebg-preview.png?alt=media&token=727d8f06-d3f8-400f-a5c7-16ac1635366b')),
                   Text(
                     'You have got ${controller.points} Points',
                     style: TextStyle(color: _textColor),
@@ -64,7 +57,7 @@ class Resultcreen extends GetView<QuizController> {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 5,
                   ),
                   Expanded(
                       child: GridView.builder(
@@ -108,14 +101,14 @@ class Resultcreen extends GetView<QuizController> {
               )),
             ),
             ColoredBox(
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: Color.fromRGBO(255, 255, 255, 0),
               child: Padding(
                   padding: UIParameters.screenPadding,
                   child: Row(
                     children: [
                       Expanded(
                           child: MainButton(
-                        color: Colors.pink[50],
+                        color: Colors.lime,
                         onTap: () {
                           controller.tryAgain();
                         },
@@ -126,7 +119,7 @@ class Resultcreen extends GetView<QuizController> {
                       ),
                       Expanded(
                           child: MainButton(
-                        color: Colors.white,
+                        color: Colors.redAccent,
                         onTap: () {
                           controller.saveQuizResults();
                         },

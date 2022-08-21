@@ -15,281 +15,407 @@ class _HealthPageState extends State<HealthPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            SizedBox(
-              height: 60,
-            ),
-            Center(
-              child: Text(
-                "Mental Health 🧘🏻‍♂️",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            // ignore: prefer_const_literals_to_create_immutables
+            children: [
+              SizedBox(
+                height: 60,
+              ),
+              Center(
+                child: Text(
+                  "Mental Health 🧘🏻‍♂️",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Card(
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  elevation: 5.00,
-                  shadowColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  color: Color.fromRGBO(252, 248, 232, 1),
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MusicPage()));
-                      });
-                    },
-                    child: SizedBox(
-                      height: 220,
-                      width: MediaQuery.of(context).size.width / 2.2,
-                      child: Container(
-                        width: 400 / 2.5,
-                        margin: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image(image: AssetImage('assets/images/c.png')),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Your Daily   Meditation Sessions",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                "Feel the peace for 10 Minutes Today",
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    elevation: 5.00,
+                    shadowColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: Color.fromRGBO(252, 248, 232, 1),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MusicPage()));
+                        });
+                      },
+                      child: SizedBox(
+                        height: 220,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        child: Container(
+                          width: 400 / 2.5,
+                          margin: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image(image: AssetImage('assets/images/c.png')),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Your Daily   Meditation Sessions",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Color.fromARGB(182, 46, 46, 46),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                     fontSize: 15),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  "Feel the peace for 10 Minutes Today",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(182, 46, 46, 46),
+                                      fontSize: 15),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Card(
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  elevation: 5.00,
-                  shadowColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  color: Color.fromRGBO(212, 246, 204, 1),
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {});
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Card(
+                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    elevation: 5.00,
+                    shadowColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: Color.fromRGBO(212, 246, 204, 1),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {});
 
-                      setState(() {});
-                    },
-                    child: SizedBox(
-                      height: 220,
-                      width: MediaQuery.of(context).size.width / 2.2,
-                      child: Container(
-                        width: 400 / 2.5,
-                        margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image(image: AssetImage('assets/images/b.png')),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Mental Health Check",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Text(
-                                "Monitor your child’s Mental Health by asking these simple questions",
+                        setState(() {});
+                      },
+                      child: SizedBox(
+                        height: 220,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        child: Container(
+                          width: 400 / 2.5,
+                          margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image(image: AssetImage('assets/images/b.png')),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Mental Health Check",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Color.fromARGB(182, 46, 46, 46),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                     fontSize: 15),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  "Monitor your child’s Mental Health by asking these simple questions",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(182, 46, 46, 46),
+                                      fontSize: 15),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Card(
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  elevation: 5.00,
-                  shadowColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  color: Color.fromRGBO(200, 182, 226, 1),
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => MusicPage()));
-                      });
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    elevation: 5.00,
+                    shadowColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: Color.fromRGBO(200, 182, 226, 1),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (context) => MusicPage()));
+                        });
 
-                      setState(() {});
-                    },
-                    child: SizedBox(
-                      height: 220,
-                      width: MediaQuery.of(context).size.width / 2.2,
-                      child: Container(
-                        width: 400 / 2.5,
-                        margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image(image: AssetImage('assets/images/a.png')),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Learn how to meditate",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Text(
-                                "Enhance your meditation knowledge",
+                        setState(() {});
+                      },
+                      child: SizedBox(
+                        height: 220,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        child: Container(
+                          width: 400 / 2.5,
+                          margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image(image: AssetImage('assets/images/a.png')),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Learn how to meditate",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Color.fromARGB(182, 46, 46, 46),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                     fontSize: 15),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Text(
+                                  "Enhance your meditation knowledge",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(182, 46, 46, 46),
+                                      fontSize: 15),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Card(
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  elevation: 5.00,
-                  shadowColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  color: Color.fromRGBO(154, 182, 193, 1),
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MentalHealthPage()));
-                      });
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Card(
+                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    elevation: 5.00,
+                    shadowColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: Color.fromRGBO(154, 182, 193, 1),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MentalHealthPage()));
+                        });
 
-                      setState(() {});
-                    },
-                    child: SizedBox(
-                      height: 220,
-                      width: MediaQuery.of(context).size.width / 2.2,
-                      child: Container(
-                        width: 400 / 2.5,
-                        margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image(
-                                image: AssetImage('assets/images/search.png')),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Mental Health Check",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(7.0),
-                              child: Text(
-                                "Check what experts have to say about mental health",
+                        setState(() {});
+                      },
+                      child: SizedBox(
+                        height: 220,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        child: Container(
+                          width: 400 / 2.5,
+                          margin: EdgeInsets.fromLTRB(15, 10, 10, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image(
+                                  image:
+                                      AssetImage('assets/images/search.png')),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Mental Health Check",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Color.fromARGB(182, 46, 46, 46),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                     fontSize: 15),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Text(
+                                  "Check what experts have to say about mental health",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(182, 46, 46, 46),
+                                      fontSize: 15),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Card(
+                      margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      elevation: 5.00,
+                      shadowColor: Colors.grey,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      color: Color.fromRGBO(226, 182, 182, 1),
+                      child: SizedBox(
+                        height: 220,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image(
+                                  image: NetworkImage(
+                                      'https://firebasestorage.googleapis.com/v0/b/quizx-fb763.appspot.com/o/images%2Fimage-removebg-preview%20(9)%201.png?alt=media&token=f5fbd289-5782-4318-b72c-00cf3a764bb3')),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Contact Child Specialists",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: Text(
+                                  "Contact List of Child Specialists based on your location.",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(182, 46, 46, 46),
+                                      fontSize: 15),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Card(
+                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    elevation: 5.00,
+                    shadowColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    color: Color.fromRGBO(154, 182, 193, 0.9),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MentalHealthPage()));
+                        });
+
+                        setState(() {});
+                      },
+                      child: SizedBox(
+                        height: 220,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image(
+                                  image: NetworkImage(
+                                      'https://firebasestorage.googleapis.com/v0/b/quizx-fb763.appspot.com/o/images%2Fimage-removebg-preview%20(10)%201.png?alt=media&token=9db5d6a1-afaf-4b29-9e17-519041e25dec')),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Let's Play Gratitude",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(7.0),
+                                child: Text(
+                                  "Check what your child has written in gratitude page!",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(182, 46, 46, 46),
+                                      fontSize: 15),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

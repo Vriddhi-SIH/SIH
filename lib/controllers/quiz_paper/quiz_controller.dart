@@ -70,6 +70,8 @@ class QuizController extends GetxController {
           .map((question) => Question.fromSnapshot(question))
           .toList();
       quizPaper.questions = questions;
+      print(questions);
+
       for (Question _question in quizPaper.questions!) {
         final QuerySnapshot<Map<String, dynamic>> answersQuery =
             await quizePaperFR

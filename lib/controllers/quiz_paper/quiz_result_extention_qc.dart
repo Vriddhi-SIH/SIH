@@ -20,10 +20,8 @@ extension QuizeResult on QuizController {
 
   double get points {
     var points = (correctQuestionCount / allQuestions.length) *
-        100 *
-        (quizPaperModel.timeSeconds - remainSeconds) /
-        quizPaperModel.timeSeconds *
-        100;
+        10000 /
+        (quizPaperModel.timeSeconds - remainSeconds);
     return points.toPrecision(2);
   }
 

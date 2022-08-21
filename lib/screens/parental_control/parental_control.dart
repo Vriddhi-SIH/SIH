@@ -49,7 +49,7 @@ class _ParentalControlPageState extends State<ParentalControlPage> {
       });
     }
     await Future.delayed(Duration(seconds: 1));
-    await Restart.restartApp(webOrigin: HomeScreen.routeName);
+    // await Restart.restartApp(webOrigin: HomeScreen.routeName);
   }
 
   void toggleSwitch(bool value) {
