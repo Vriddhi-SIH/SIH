@@ -5,16 +5,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sih_2022/configs/configs.dart';
 import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/models/quiz_paper_model.dart';
 import 'package:sih_2022/screens/screens.dart';
 import 'package:sih_2022/widgets/widgets.dart';
 
 import 'answer_check_screen.dart';
 
 class Resultcreen extends GetView<QuizController> {
+  // final
   const Resultcreen({Key? key}) : super(key: key);
-
+  // final productController = Get.put(QuizPaperController());
   static const String routeName = '/resultscreen';
-
+  @override
   @override
   Widget build(BuildContext context) {
     const Color _textColor = Colors.green;
@@ -49,6 +51,11 @@ class Resultcreen extends GetView<QuizController> {
                     'You have got ${controller.points} Points',
                     style: TextStyle(color: _textColor),
                   ),
+                  controller.correctQuestionCount < 3
+                      ? Text(" Hello World")
+                      : controller.correctQuestionCount < 5
+                          ? Text("Nice ")
+                          : Text("Ayush"),
                   const SizedBox(
                     height: 25,
                   ),
@@ -108,7 +115,7 @@ class Resultcreen extends GetView<QuizController> {
                     children: [
                       Expanded(
                           child: MainButton(
-                        color: Colors.lime,
+                        color: Colors.red,
                         onTap: () {
                           controller.tryAgain();
                         },
@@ -119,7 +126,7 @@ class Resultcreen extends GetView<QuizController> {
                       ),
                       Expanded(
                           child: MainButton(
-                        color: Colors.redAccent,
+                        color: Colors.green[400],
                         onTap: () {
                           controller.saveQuizResults();
                         },

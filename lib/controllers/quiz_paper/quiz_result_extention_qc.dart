@@ -2,11 +2,18 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/firebase/references.dart';
 import 'package:sih_2022/services/notification/notification_service.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/uuid_util.dart';
+
+var uuid = Uuid(options: {'grng': UuidUtil.cryptoRNG});
+
+// Generate a v4 (random) id that will use cryptRNG for its rng function
 
 extension QuizeResult on QuizController {
   int get correctQuestionCount => allQuestions
@@ -30,16 +37,18 @@ extension QuizeResult on QuizController {
     User? _user = Get.find<AuthController>().getUser();
     if (_user == null) return;
     batch.set(
-        userFR
-            .doc(_user.email)
-            .collection('myrecent_quizes')
-            .doc(quizPaperModel.id),
-        {
-          "points": points,
-          "correct_count": '$correctQuestionCount/${allQuestions.length}',
-          "paper_id": quizPaperModel.id,
-          "time": quizPaperModel.timeSeconds - remainSeconds
-        });
+      userFR
+          .doc(_user.email)
+          .collection('myrecent_quizes')
+          .doc(quizPaperModel.id + uuid.v4()),
+      {
+        "points": points,
+        "correct_count": '$correctQuestionCount/${allQuestions.length}',
+        "paper_id": quizPaperModel.id,
+        'saved_date': double.parse(DateTime.now().day.toString()).toDouble(),
+        "time": (quizPaperModel.timeSeconds - remainSeconds).toDouble()
+      },
+    );
     batch.set(
         leaderBoardFR
             .doc(quizPaperModel.id)

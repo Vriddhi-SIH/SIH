@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controllers/common/translator.dart';
 import '../../controllers/controllers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'home_screen.dart';
@@ -15,11 +16,12 @@ class ParentSettings extends StatefulWidget {
 
 class _ParentSettingsState extends State<ParentSettings> {
   final AuthController _auth = Get.find<AuthController>();
+  final LanguageController _auth2 = Get.find<LanguageController>();
   late SharedPreferences _prefs;
 
   String name2 = "Enter Your Child Name";
   String childName = '';
-  String langue = 'English';
+  String langue = 'en';
   String newPass = "hello";
   String oldPass = '';
   String newPass2 = '';
@@ -35,11 +37,26 @@ class _ParentSettingsState extends State<ParentSettings> {
     _prefs.setString('childname', name);
   }
 
+  saveStringValue3(String name) async {
+    _prefs = await SharedPreferences.getInstance();
+    _prefs.setString('language', name);
+  }
+
   retrieveStringValue() async {
     _prefs = await SharedPreferences.getInstance();
     String? value = _prefs.getString("childname");
     setState(() {
       childName = value as String;
+    });
+    Future.delayed(Duration(seconds: 1));
+    setState(() {});
+  }
+
+  retrieveStringValue2() async {
+    _prefs = await SharedPreferences.getInstance();
+    String? value = _prefs.getString("language");
+    setState(() {
+      langue = value as String;
     });
     Future.delayed(Duration(seconds: 1));
     setState(() {});
@@ -57,16 +74,15 @@ class _ParentSettingsState extends State<ParentSettings> {
   // }
 
   final List<String> _mesaures = [
-    'English',
-    'Hindi',
-    'Arabic',
-    'Tamil',
-    'Urdu',
+    'en',
+    'hi',
+    'ar',
+    'pa',
+    'ja',
   ];
 
   @override
   void initState() {
-    setState(() {});
     super.initState();
   }
 
@@ -74,6 +90,7 @@ class _ParentSettingsState extends State<ParentSettings> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        Get.put(LanguageController());
         Get.offAllNamed(HomeScreen.routeName);
         return Future.delayed(Duration(microseconds: 0));
       },
@@ -89,7 +106,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                   SizedBox(
                       height: 10, width: MediaQuery.of(context).size.width),
                   Text(
-                    'Settings',
+                    trans2[26],
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -107,7 +124,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                     onPressed: () => showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        title: const Text("Change Kid's Name"),
+                        title: Text(trans2[28]),
                         actionsPadding: EdgeInsets.all(20),
                         actions: <Widget>[
                           Container(
@@ -115,7 +132,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                             height: 80,
                             child: TextFormField(
                               decoration: InputDecoration(
-                                labelText: 'Enter Your Child Name',
+                                labelText: trans2[29],
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(5),
@@ -145,8 +162,8 @@ class _ParentSettingsState extends State<ParentSettings> {
                         ],
                       ),
                     ),
-                    child: const Text(
-                      "Change Kid's Name",
+                    child: Text(
+                      trans2[28],
                       style: TextStyle(color: Colors.grey, fontSize: 25),
                     ),
                   ),
@@ -211,6 +228,13 @@ class _ParentSettingsState extends State<ParentSettings> {
                                 onChanged: (value) {
                                   setState(() {
                                     langue = value as String;
+                                    saveStringValue3(langue);
+                                    setState(() {});
+                                    // Get.put(LanguageController());
+                                    // Get.offAllNamed(HomeScreen.routeName);
+                                    _auth2.retrieveStringValue2();
+
+                                    setState(() {});
                                   });
                                 },
                                 value: langue,
@@ -239,7 +263,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                             height: 10,
                           ),
                           Text(
-                            "Change Password for Child Mode",
+                            trans2[30],
                             style: TextStyle(color: Colors.grey, fontSize: 20),
                           ),
                           SizedBox(
@@ -250,7 +274,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                             height: 45,
                             child: TextFormField(
                               decoration: InputDecoration(
-                                labelText: 'Current Password',
+                                labelText: trans2[31],
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(15),
@@ -272,7 +296,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                             height: 45,
                             child: TextFormField(
                               decoration: InputDecoration(
-                                labelText: 'New Password',
+                                labelText: trans2[32],
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(15),
@@ -307,11 +331,10 @@ class _ParentSettingsState extends State<ParentSettings> {
                                       context: context,
                                       builder: (BuildContext context) =>
                                           AlertDialog(
-                                            title:
-                                                const Text("Change Kid's Name"),
+                                            title: Text(trans2[28]),
                                             actionsPadding: EdgeInsets.all(20),
                                             actions: <Widget>[
-                                              Text("Wrong Current Password "),
+                                              Text(trans2[33]),
                                             ],
                                           ));
                             },
@@ -342,7 +365,7 @@ class _ParentSettingsState extends State<ParentSettings> {
                     ),
                     child: Center(
                         child: Text(
-                      "Watch Tutorial Again",
+                      trans2[34],
                       style: TextStyle(fontSize: 20),
                     )),
                   ),

@@ -7,7 +7,9 @@ import '../services/firebase/firebasestorage_service.dart';
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
+    // Get.put(LanguageController());
     Get.put(AuthController(), permanent: true);
+
     Get.put(NotificationService());
     Get.lazyPut(() => FireBaseStorageService());
   }

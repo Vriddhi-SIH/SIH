@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:sih_2022/screens/home/home_screen.dart';
 import 'package:timelines/timelines.dart';
-import 'package:restart_app/restart_app.dart';
 
 class ParentalControlPage extends StatefulWidget {
   ParentalControlPage({Key? key}) : super(key: key);
@@ -81,10 +80,9 @@ class _ParentalControlPageState extends State<ParentalControlPage> {
 
   @override
   void initState() {
-    setState(() {
-      retrieveStringValue2();
-      retrieveBoolValue();
-    });
+    retrieveStringValue2();
+    retrieveBoolValue();
+    setState(() {});
     super.initState();
   }
 

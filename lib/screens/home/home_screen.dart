@@ -8,16 +8,80 @@ import 'package:sih_2022/controllers/article/piechart_controller.dart';
 import 'package:sih_2022/controllers/controllers.dart';
 import 'package:sih_2022/screens/auth_and_profile/profile_screen.dart';
 import 'package:sih_2022/screens/child/home.dart';
-import 'package:sih_2022/screens/community/community_pag.dart';
-import 'package:sih_2022/screens/home/new_page.dart';
+
+import 'package:sih_2022/screens/community_forum2/community_forum.dart';
 
 import 'package:sih_2022/screens/home/settings_parent.dart';
 import 'package:sih_2022/screens/mental_health/mental_health.dart';
 import 'package:sih_2022/screens/parental_control/parental_control.dart';
 import 'package:sih_2022/screens/timeline/timeline.dart';
 import 'package:sih_2022/screens/physical_health/lib/page/home_page.dart';
+import '../../controllers/common/translator.dart';
+import '../community_forum2/doctors_homepage.dart';
 import '../specially abled/homepage.dart';
 import 'article_screen.dart/article_page3.dart';
+
+var trans2 = [
+  "Your child's Progress", //0
+  "45 minutes spent today", //1
+  "15% Progress", //2
+  "Community Forum", //3
+  "Move on to the world's largest community of parents", //4
+  "278 Unread Messages", //5
+  "Need Expert Guidence?", //6
+  "Read articles on various topics written by experts from around the globe", //7
+  "10 Unread Articles", //8
+  "Physical Health", //9
+  "Check out exercies you can do with your child", //10
+  "30 minutes spent today", //11
+  "Mental Health", //12
+  "Let us help you with your child's mental issues", //13
+  "15 question asked", //14
+  "Timeline", //15
+  "Let the growth timeline speak for your child's activites", //16
+  "30 minutes spent today", //17
+  "Parental Controls", //18
+  "Monitor your child's screentime and other activities", //19
+  "30 minutes spent today", //20
+  "Hello Parent", //21
+  "Mate", //22
+  "Home", //23
+  "Community", //24
+  "Profile", //25
+  "Settings", //26
+  "For Specially Abled", //27
+  // "Settings", //28
+  "Change Kid's Name", //28
+  "Enter Your Child Name", //29
+  "Change Password For Child Mode", //30
+  "Current Password", //31
+  "New Password", //32
+  "Wrong Current Password", //33
+  "Watch Tutorial Again", //34
+  "Sign In", //35
+  "Sign Out", //36
+  "Submit", //37
+  "Set", //38
+  "Want Doctor’s Advice?", //39
+  "Search Child Specialists in your area with their contact info", //40
+  "2 Contacts Added", //41
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -29,13 +93,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late SharedPreferences _prefs;
   final AuthController _auth = Get.find<AuthController>();
+
   String password = '';
   String newvalue = '';
   String childName = '';
-  String pass3 = '';
+
   bool newUser = true;
   String name2 = "Enter Your Child Name";
-  // bool? isSwitched2;
+
   saveBoolValue2(bool name) async {
     _prefs = await SharedPreferences.getInstance();
     _prefs.setBool('newUser', false);
@@ -92,9 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
         password = value as String;
       }
     });
-
-    Future.delayed(Duration(seconds: 1));
     setState(() {});
+    Future.delayed(Duration(seconds: 1));
   }
 
   retrieveStringValue2() async {
@@ -108,6 +172,22 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     await Future.delayed(Duration(seconds: 1));
+
+    setState(() {});
+  }
+
+  retrieveStringValue3() async {
+    _prefs = await SharedPreferences.getInstance();
+    final List<String>? items = await _prefs.getStringList('items');
+    if (items == null) {
+    } else {
+      trans2 = items as List<String>;
+      print(trans2);
+    }
+
+    setState(() {});
+    currentWidget = homepage3();
+    await Future.delayed(const Duration(seconds: 1));
 
     setState(() {});
   }
@@ -134,23 +214,29 @@ class _HomeScreenState extends State<HomeScreen> {
   void loadScreen() {
     switch (currentindex) {
       case 0:
+        Get.lazyPut(() => LanguageController());
+
         setState(() {
+          retrieveStringValue3();
+          setState(() {});
           retrieveStringValue();
           retrieveStringValue2();
           retrieveBoolValue();
           retrieveBoolValue2();
+
           currentWidget = homepage3();
         });
+        // currentWidget = loadingscreen();
         break;
       case 1:
-        currentWidget = Screen2();
+        currentWidget = Community_Forum();
 
         break;
 
       case 3:
-        setState(() {
-          currentWidget = ParentSettings();
-        });
+        Get.lazyPut(() => LanguageController());
+
+        currentWidget = ParentSettings();
 
         break;
       case 2:
@@ -165,7 +251,15 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Widget loadingscreen() {
+    return Material(
+      child: Center(child: CircularProgressIndicator()),
+    );
+  }
+
   Widget homepage3() {
+    // return lang.obx(
+    //   (state) {
     return Material(
         color: Colors.white,
         child: Container(
@@ -183,112 +277,99 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Hello Parent 👋",
+                        "${trans2[21]} 👋",
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
                       InkWell(
-                          onTap: () => password == 'asddsa'
+                          onTap: () => childName == 'q2a2'
                               ? ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                       backgroundColor: Colors.red,
                                       duration: Duration(seconds: 2),
                                       content: Text(
-                                        'Please Set the Password ,Add Child Name and Login By Going Into Settings',
+                                        'Please Add Child Name and Login First By Going Into Settings',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       )))
-                              : childName == 'q2a2'
+                              : _auth.getUser() == null
                                   ? ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
                                           backgroundColor: Colors.red,
                                           duration: Duration(seconds: 2),
                                           content: Text(
-                                            'Please Add Child Name and Login First By Going Into Settings',
+                                            'Please Login First By Going Into Settings',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           )))
-                                  : _auth.getUser() == null
-                                      ? ScaffoldMessenger.of(context)
-                                          .showSnackBar(const SnackBar(
-                                              backgroundColor: Colors.red,
-                                              duration: Duration(seconds: 2),
-                                              content: Text(
-                                                'Please Login First By Going Into Settings',
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )))
-                                      : showDialog<String>(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              AlertDialog(
-                                            title: const Text(
-                                                "Enter the Password To Enter Child Mode"),
-                                            actionsPadding: EdgeInsets.all(20),
-                                            actions: <Widget>[
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2.5,
-                                                height: 80,
-                                                child: TextFormField(
-                                                  decoration: InputDecoration(
-                                                    labelText:
-                                                        'Enter the Password ',
-                                                    border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                        Radius.circular(5),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      newvalue = value;
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                              ElevatedButton(
-                                                  onPressed: () {
-                                                    setState(() {});
-                                                    print(password);
-                                                    print(newvalue);
-                                                    password == newvalue
-                                                        ? Get.offAllNamed(
-                                                            HomeScreen1
-                                                                .routeName)
-                                                        : ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                const SnackBar(
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .red,
-                                                                    duration: Duration(
-                                                                        seconds:
-                                                                            2),
-                                                                    content:
-                                                                        Text(
-                                                                      'Wrong Password',
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .white,
-                                                                          fontWeight:
-                                                                              FontWeight.bold),
-                                                                    )));
-                                                  },
-                                                  child: Text("Login")),
-                                            ],
-                                          ),
-                                        ),
+                                  // : showDialog<String>(
+                                  //     context: context,
+                                  //     builder: (BuildContext context) =>
+                                  //         AlertDialog(
+                                  //       title: const Text(
+                                  //           "Enter the Password To Enter Child Mode"),
+                                  //       actionsPadding: EdgeInsets.all(20),
+                                  //       actions: <Widget>[
+                                  //         Container(
+                                  //           width: MediaQuery.of(context)
+                                  //                   .size
+                                  //                   .width /
+                                  //               2.5,
+                                  //           height: 80,
+                                  //           child: TextFormField(
+                                  //             decoration: InputDecoration(
+                                  //               labelText:
+                                  //                   'Enter the Password ',
+                                  //               border: OutlineInputBorder(
+                                  //                 borderRadius:
+                                  //                     BorderRadius.all(
+                                  //                   Radius.circular(5),
+                                  //                 ),
+                                  //               ),
+                                  //             ),
+                                  //             onChanged: (value) {
+                                  //               setState(() {
+                                  //                 newvalue = value;
+                                  //               });
+                                  //             },
+                                  //           ),
+                                  //         ),
+                                  //         ElevatedButton(
+                                  //             onPressed: () {
+                                  //               setState(() {});
+                                  //               print(password);
+                                  //               print(newvalue);
+                                  //               password == newvalue
+                                  //                   ? Get.offAllNamed(
+                                  //                       HomeScreen1.routeName)
+                                  //                   : ScaffoldMessenger.of(
+                                  //                           context)
+                                  //                       .showSnackBar(
+                                  //                           const SnackBar(
+                                  //                               backgroundColor:
+                                  //                                   Colors.red,
+                                  //                               duration:
+                                  //                                   Duration(
+                                  //                                       seconds:
+                                  //                                           2),
+                                  //                               content: Text(
+                                  //                                 'Wrong Password',
+                                  //                                 style: TextStyle(
+                                  //                                     color: Colors
+                                  //                                         .white,
+                                  //                                     fontWeight:
+                                  //                                         FontWeight
+                                  //                                             .bold),
+                                  //                               )));
+                                  //             },
+                                  //             child: Text("Login")),
+                                  //       ],
+                                  //     ),
+                                  : Get.offAllNamed(HomeScreen1.routeName),
                           child: Image(
                             image: AssetImage('assets/images/child_login.png'),
                             width: 40,
@@ -307,7 +388,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     final user = _auth.getUser();
                     String _label = 'Mate';
                     if (user != null) {
-                      _label = '${user.displayName}';
+                      _label = trans2[22];
                     }
                     return Align(
                       alignment: Alignment.topLeft,
@@ -336,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 });
                               },
                               child: SizedBox(
-                                height: 140,
+                                height: 160,
                                 width: 400,
                                 child: Container(
                                   width: 400,
@@ -357,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .width /
                                                   2,
                                               child: Text(
-                                                "For Specially Abled",
+                                                trans2[27],
                                                 style: TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
@@ -440,7 +521,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width:
                                         MediaQuery.of(context).size.width / 2,
                                     child: Text(
-                                      "Your child's progress",
+                                      trans2[0],
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
@@ -454,7 +535,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.4,
                                     child: Text(
-                                      "45 minutes spent today",
+                                      trans2[1],
                                       style: TextStyle(
                                           color:
                                               Color.fromARGB(182, 46, 46, 46),
@@ -467,7 +548,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Container(
                                     width: 180,
                                     child: Text(
-                                      "15% progress",
+                                      trans2[2],
                                       style: TextStyle(
                                           fontSize: 13, color: Colors.black87),
                                     ),
@@ -516,7 +597,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "Commuinity Forum",
+                                    trans2[3],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -530,7 +611,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.55,
                                   child: Text(
-                                    "Move on to the world's largest community of parents",
+                                    trans2[4],
                                     style: TextStyle(
                                         color: Color.fromARGB(182, 46, 46, 46),
                                         fontSize: 15),
@@ -542,7 +623,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "278 unread messages",
+                                    trans2[5],
                                     style: TextStyle(
                                         fontSize: 13, color: Colors.black87),
                                   ),
@@ -571,13 +652,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Color.fromRGBO(205, 194, 153, 1),
                   child: InkWell(
                     onTap: () {
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => ArticleSection()));
                       setState(() {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => ArticleSection()));
                         currentWidget = ArticleSection();
                       });
-                      // loadScreen();
-                      setState(() {});
                     },
                     child: SizedBox(
                       height: 160,
@@ -594,7 +673,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 220,
                                   child: Text(
-                                    "Need expert guidance?",
+                                    trans2[6],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -608,7 +687,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.6,
                                   child: Text(
-                                    "Read articles on various topics written by experts from around the globe",
+                                    trans2[7],
                                     style: TextStyle(
                                         color: Color.fromARGB(182, 46, 46, 46),
                                         fontSize: 15),
@@ -620,7 +699,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "10 unread articles",
+                                    trans2[8],
                                     style: TextStyle(
                                         fontSize: 13, color: Colors.black87),
                                   ),
@@ -650,8 +729,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Color.fromRGBO(175, 220, 154, 1),
                   child: InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PhysicalHealthPage()));
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => PhysicalHealthPage()));
                     },
                     child: SizedBox(
                       height: 140,
@@ -668,7 +747,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "Physical Health",
+                                    trans2[9],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -682,7 +761,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.55,
                                   child: Text(
-                                    "Check out exercises you can do with your child",
+                                    trans2[10],
                                     style: TextStyle(
                                         color: Color.fromARGB(182, 46, 46, 46),
                                         fontSize: 15),
@@ -694,7 +773,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "30 minutes spent today",
+                                    trans2[11],
                                     style: TextStyle(
                                         fontSize: 13, color: Colors.black87),
                                   ),
@@ -725,8 +804,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => HealthPage()));
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => HealthPage()));
                       });
                       loadScreen();
                       setState(() {});
@@ -746,7 +825,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "Mental Health",
+                                    trans2[12],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -760,7 +839,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.45,
                                   child: Text(
-                                    "Let us help you with your child's mental issues",
+                                    trans2[13],
                                     style: TextStyle(
                                         color: Color.fromARGB(182, 46, 46, 46),
                                         fontSize: 15),
@@ -772,7 +851,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "15 questions asked",
+                                    trans2[14],
                                     style: TextStyle(
                                         fontSize: 13, color: Colors.black87),
                                   ),
@@ -825,7 +904,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "Timeline",
+                                    trans2[15],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -839,7 +918,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.55,
                                   child: Text(
-                                    "Let the growth timeline speak for your child's activities",
+                                    trans2[16],
                                     style: TextStyle(
                                         color: Color.fromARGB(182, 46, 46, 46),
                                         fontSize: 15),
@@ -851,7 +930,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "Last updated on 13th August",
+                                    trans2[17],
                                     style: TextStyle(
                                         fontSize: 13, color: Colors.black87),
                                   ),
@@ -899,7 +978,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "Parental Controls",
+                                    trans2[18],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -913,7 +992,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width:
                                       MediaQuery.of(context).size.width * 0.55,
                                   child: Text(
-                                    "Monitor your child's screentime and other activities",
+                                    trans2[19],
                                     style: TextStyle(
                                         color: Color.fromARGB(182, 46, 46, 46),
                                         fontSize: 15),
@@ -925,7 +1004,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Container(
                                   width: 200,
                                   child: Text(
-                                    "30 minutes spent today",
+                                    trans2[20],
                                     style: TextStyle(
                                         fontSize: 13, color: Colors.black87),
                                   ),
@@ -944,23 +1023,106 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                Card(
+                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  elevation: 5.00,
+                  shadowColor: Colors.grey,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  color: Color.fromRGBO(205, 194, 153, 1),
+                  child: InkWell(
+                    onTap: () {
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => ArticleSection()));
+                      setState(() {
+                        currentWidget = DoctorHomePage();
+                      });
+                    },
+                    child: SizedBox(
+                      height: 160,
+                      width: 400,
+                      child: Container(
+                        width: 400 / 2.5,
+                        margin: EdgeInsets.fromLTRB(19, 0, 0, 0),
+                        child: Row(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 220,
+                                  child: Text(
+                                    trans2[39],
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.48,
+                                  child: Text(
+                                    trans2[40],
+                                    style: TextStyle(
+                                        color: Color.fromARGB(182, 46, 46, 46),
+                                        fontSize: 15),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  width: 200,
+                                  child: Text(
+                                    trans2[41],
+                                    style: TextStyle(
+                                        fontSize: 13, color: Colors.black87),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              child: Image(
+                                image: NetworkImage(
+                                    "https://firebasestorage.googleapis.com/v0/b/quizx-fb763.appspot.com/o/images%2Fistockphoto-1070231666-170667a-removebg-preview%201.png?alt=media&token=3fbc8df5-5404-4aa8-aa9b-112356d9818b"),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
               ]),
             )));
+    // },
+    // onLoading: loadingscreen(),
+    // );
   }
 
   @override
   void initState() {
     super.initState();
+    Get.put(LanguageController());
     setState(() {
+      retrieveStringValue3();
+      setState(() {});
       retrieveStringValue();
       retrieveStringValue2();
       saveStringValue(islog);
       retrieveBoolValue();
       retrieveBoolValue2();
     });
+    // setState(() {});
 
     // setState(() {
     //   currentindex = 0;
@@ -998,7 +1160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Iconsax.home,
                     size: 30,
                   ),
-                  label: 'Home',
+                  label: trans2[23],
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.white,
@@ -1006,7 +1168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Iconsax.people,
                     size: 30,
                   ),
-                  label: 'Community',
+                  label: trans2[24],
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.white,
@@ -1014,7 +1176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Iconsax.personalcard,
                     size: 30,
                   ),
-                  label: 'Profile',
+                  label: trans2[25],
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: Colors.white,
@@ -1022,7 +1184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Iconsax.setting,
                     size: 30,
                   ),
-                  label: 'Settings',
+                  label: trans2[26],
                 ),
               ],
             )));

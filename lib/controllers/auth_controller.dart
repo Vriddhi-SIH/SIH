@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sih_2022/controllers/common/translator.dart';
 import 'package:sih_2022/firebase/references.dart';
 import 'package:sih_2022/screens/child/home.dart';
 import 'package:sih_2022/screens/screens.dart' show HomeScreen, LoginScreen;
@@ -17,8 +18,7 @@ class AuthController extends GetxController {
   @override
   void onReady() {
     retrieveStringValue();
-    // retrieveBoolValue();
-    initAuth();
+
     super.onReady();
   }
 
@@ -30,7 +30,7 @@ class AuthController extends GetxController {
     } else {
       islog = value;
     }
-
+    initAuth();
     Future.delayed(Duration(seconds: 1));
   }
 
@@ -105,6 +105,7 @@ class AuthController extends GetxController {
   }
 
   void navigateToIntroduction() {
+    print(islog);
     islog
         ? Get.offAllNamed(HomeScreen1.routeName)
         : Get.offAllNamed(HomeScreen.routeName);

@@ -25,12 +25,26 @@ class LeaderBoardScreen extends GetView<LeaderBoardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: Center(
+          child: Text(
+            "Rankings",
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 28),
+          ),
+        ),
+      ),
+      backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
       bottomNavigationBar: Obx(() => controller.myScores.value == null
           ? const SizedBox()
           : LeaderBoardCard(
               data: controller.myScores.value!,
               index: -1,
+              colorw: Colors.redAccent,
             )),
       body: Center(
         child: Obx(
@@ -44,23 +58,48 @@ class LeaderBoardScreen extends GetView<LeaderBoardController> {
                   child: ListView.separated(
                     itemCount: controller.leaderBoard.length,
                     separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox();
+                      return SizedBox(
+                        height: 4,
+                      );
                     },
                     itemBuilder: (BuildContext context, int index) {
                       final data = controller.leaderBoard[index];
 
-                      return Column(
-                        children: [
-                          index == 0
-                              ? SizedBox(
-                                  height: 20,
-                                )
-                              : SizedBox(),
-                          LeaderBoardCard(
-                            data: data,
-                            index: index,
-                          ),
-                        ],
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: Column(
+                          children: [
+                            index == 0
+                                ? SizedBox(
+                                    height: 20,
+                                  )
+                                : SizedBox(),
+                            index == 0
+                                ? LeaderBoardCard(
+                                    data: data,
+                                    index: index,
+                                    colorw: Colors.yellow,
+                                  )
+                                : index == 1
+                                    ? LeaderBoardCard(
+                                        data: data,
+                                        index: index,
+                                        colorw: Colors.grey,
+                                      )
+                                    : index == 2
+                                        ? LeaderBoardCard(
+                                            data: data,
+                                            index: index,
+                                            colorw:
+                                                Colors.brown.withOpacity(0.8),
+                                          )
+                                        : LeaderBoardCard(
+                                            data: data,
+                                            index: index,
+                                            colorw: Colors.red.withOpacity(0.4),
+                                          ),
+                          ],
+                        ),
                       );
                     },
                   ),
@@ -76,19 +115,24 @@ class LeaderBoardCard extends StatelessWidget {
     Key? key,
     required this.data,
     required this.index,
+    required this.colorw,
   }) : super(key: key);
 
   final LeaderBoardData data;
   final int index;
+  final Color colorw;
+  // Colors.primaries[Random().nextInt(Colors.primaries.length)]
+  // .withOpacity(0.5);
 
   @override
   Widget build(BuildContext context) {
     const tsStyle = TextStyle(fontWeight: FontWeight.bold);
     return Container(
+      // color: Colors.white,
+
       height: 100,
-      decoration: BoxDecoration(
-          color: Colors.primaries[Random().nextInt(Colors.primaries.length)]
-              .withOpacity(0.5)),
+      decoration:
+          BoxDecoration(color: colorw, borderRadius: BorderRadius.circular(20)),
       child: ListTile(
         leading: CircleAvatar(
           foregroundImage:

@@ -25,7 +25,7 @@ class QuizNumberCard extends StatelessWidget {
         _backgroundColor = Colors.amber;
         break;
       case AnswerStatus.correct:
-        _backgroundColor = Colors.green;
+        _backgroundColor = Colors.lightGreen;
         break;
       case AnswerStatus.wrong:
         _backgroundColor = Colors.red;
@@ -45,12 +45,10 @@ class QuizNumberCard extends StatelessWidget {
           child: Text(
             '$index',
             style: TextStyle(
-                color: status == AnswerStatus.notanswered
-                    ? Theme.of(context).primaryColor
-                    : null),
+                color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
           ),
         ),
-        padding: const EdgeInsets.all(10), 
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: _backgroundColor,
             borderRadius: UIParameters.cardBorderRadius),

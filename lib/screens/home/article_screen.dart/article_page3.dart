@@ -4,6 +4,7 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:sih_2022/screens/screens.dart';
 
 import '../../../controllers/article/article_controller.dart';
+import '../../../controllers/common/translator.dart';
 import 'article_page2.dart';
 
 TextStyle st(Color colors) {
@@ -25,7 +26,8 @@ class _ArticleSectionState extends State<ArticleSection>
     TabController tabcontoller = TabController(length: 4, vsync: this);
     return WillPopScope(
       onWillPop: () {
-        Get.offAllNamed(HomeScreen.routeName);
+        Get.put(LanguageController());
+        Navigator.popAndPushNamed(context, HomeScreen.routeName);
         return Future.delayed(Duration(seconds: 1));
       },
       child: Scaffold(

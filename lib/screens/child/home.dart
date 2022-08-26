@@ -8,6 +8,7 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sih_2022/configs/configs.dart';
 import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/screens/child/gratitude_page.dart';
 import 'package:sih_2022/screens/child/settings.dart';
 import 'package:sih_2022/screens/games/game_page.dart';
 import 'package:sih_2022/screens/home/home_screen.dart';
@@ -435,6 +436,52 @@ class _HomeScreen1State extends State<HomeScreen1> {
                         ),
                       ),
                     ),
+                    Card(
+                      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      elevation: 5.00,
+                      shadowColor: Colors.grey,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      color: Colors.amber,
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            currentWidget = Gratitude();
+                          });
+                        },
+                        child: SizedBox(
+                          height: 150,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                    child: Text(
+                                      "Let's Work",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                child: Image(
+                                  image: NetworkImage(
+                                      'https://firebasestorage.googleapis.com/v0/b/quizx-fb763.appspot.com/o/images%2Fgratitude.png?alt=media&token=7a9d905b-fb05-4738-81a1-fcf6e862d65a'),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ]),
                 ),
               ))),
@@ -443,7 +490,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
 
   @override
   void initState() {
-    saveStringValue(islog);
+    saveStringValue(true);
     retrieveStringValue();
     retrieveStringValue2();
     setState(() {});

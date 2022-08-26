@@ -6,7 +6,8 @@ class RecentTest {
   String? papername;
   String? paperimage;
   final double? points;
-  final int? time;
+  final double? time;
+  final double? savedtime;
 
   RecentTest({
     this.correctCount,
@@ -15,6 +16,7 @@ class RecentTest {
     this.paperimage,
     this.time,
     this.points,
+    this.savedtime,
   });
 
   RecentTest.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
@@ -22,14 +24,16 @@ class RecentTest {
         paperId = snapshot['paper_id'] as String?,
         papername = '', //snapshot['papername'] as String?,
         paperimage = '', //snapshot['paperimage'] as String?,
-        time = snapshot['time'] as int?,
-        points = snapshot['points'];
+        time = snapshot['time'],
+        points = snapshot['points'],
+        savedtime = snapshot['saved_date'];
 
   Map<String, dynamic> toJson() => {
         'correct_count': correctCount,
         'paper_id': paperId,
         'papername': papername,
         'paperimage': paperimage,
-        'points': points
+        'points': points,
+        'saved_date': savedtime,
       };
 }

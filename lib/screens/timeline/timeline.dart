@@ -7,6 +7,8 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import 'package:sih_2022/controllers/timeline/timeline_controller.dart';
 import 'package:timelines/timelines.dart';
+
+import '../../controllers/common/translator.dart';
 // import 'package:transliteration/response/transliteration_response.dart';
 // import 'package:transliteration/transliteration.dart';
 
@@ -14,18 +16,43 @@ TextStyle st(Color colors) {
   return TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: colors);
 }
 
-class TimeLinePage extends StatelessWidget {
+class TimeLinePage extends StatefulWidget {
   TimeLinePage({Key? key}) : super(key: key);
   static const routeName = "/timeline";
 
-  final Controller = Get.put(TimeLineController());
-  // Future<String> setHindi(Languages lan, String text) async {
-  //   TransliterationResponse? _response =
-  //       await Transliteration.transliterate(text, lan);
+  @override
+  State<TimeLinePage> createState() => _TimeLinePageState();
+}
 
-  //   return lan == Languages.ENGLISH
-  //       ? text
-  //       : _response!.transliterationSuggestions[0];
+class _TimeLinePageState extends State<TimeLinePage> {
+  final Controller = Get.put(TimeLineController());
+
+  // Future<String> setHindi(Languages lan, String text) async {
+
+  var translatedText = "The Growth Timeline";
+
+  var inputText;
+
+  // trans2(String user) async {
+  //   return await resultTranslate(user);
+
+  //   // setState(() {});
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+  // void onPressed() async {
+  //   inputText = inputTextController.text;
+  //   var result = await FirebaseLanguage.instance
+  //       .languageTranslator(
+  //           SupportedLanguages.English, SupportedLanguages.Hindi)
+  //       .processText(inputText);
+  //   setState(() {
+  //     translatedText = result;
+  //   });
+  //   print(translatedText);
   // }
 
   @override
@@ -47,13 +74,19 @@ class TimeLinePage extends StatelessWidget {
                       height: 50,
                     ),
                     Text(
-                      "The Growth Timeline",
+                      translatedText,
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Nunito',
                           color: Colors.black),
                     ),
+                    // new TextField(controller: inputTextController),
+                    // new SizedBox(height: 10),
+                    // new ElevatedButton(
+                    //     child: new Text("Translate",
+                    //         style: TextStyle(color: Colors.white)),
+                    //     onPressed: onPressed),
                   ],
                 ),
               ),

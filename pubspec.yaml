@@ -36,17 +36,18 @@ dependencies:
   timelines: ^0.1.0
   
   transliteration: ^0.0.6
-  translator: ^0.1.7
+  
   scoped_model: ^1.1.0
 
   audioplayers: ^1.0.1
   pie_chart: ^5.3.2
   shared_preferences: ^2.0.15
   iconsax: ^0.0.8
-  restart_app: ^1.1.0+1
+ 
   video_player: ^2.4.6
   fl_chart: ^0.55.1
   text_to_speech: ^0.2.3
+  translator: ^0.1.7
   flutter_riverpod: ^1.0.4
 
   # Generate Unique Id
@@ -61,6 +62,8 @@ dependencies:
 
   # Used together with json_serializable to generate fromJson/toJson functions
   json_annotation: ^4.5.0
+  syncfusion_flutter_charts: ^20.2.45
+  # firebase_mlkit_language: ^1.1.3
 
  
  
