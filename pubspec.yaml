@@ -49,7 +49,7 @@ dependencies:
   text_to_speech: ^0.2.3
   translator: ^0.1.7
   flutter_riverpod: ^1.0.4
-
+  
   # Generate Unique Id
   uuid: ^3.0.6
 

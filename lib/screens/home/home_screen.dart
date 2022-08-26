@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, sized_box_for_whitespace, avoid_print, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-import 'package:tutorial/tutorial.dart';
+
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -297,92 +297,104 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 18),
                       ),
                       InkWell(
-                          onTap: () => childName == 'q2a2'
+                          onTap: () => password == 'asddsa'
                               ? ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
                                       backgroundColor: Colors.red,
                                       duration: Duration(seconds: 2),
                                       content: Text(
-                                        'Please Add Child Name and Login First By Going Into Settings',
+                                        'Please Set the Password',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       )))
-                              : _auth.getUser() == null
+                              : childName == 'q2a2'
                                   ? ScaffoldMessenger.of(context)
                                       .showSnackBar(const SnackBar(
                                           backgroundColor: Colors.red,
                                           duration: Duration(seconds: 2),
                                           content: Text(
-                                            'Please Login First By Going Into Settings',
+                                            'Please Add Child Name and Login First By Going Into Settings',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           )))
-                                  // : showDialog<String>(
-                                  //     context: context,
-                                  //     builder: (BuildContext context) =>
-                                  //         AlertDialog(
-                                  //       title: const Text(
-                                  //           "Enter the Password To Enter Child Mode"),
-                                  //       actionsPadding: EdgeInsets.all(20),
-                                  //       actions: <Widget>[
-                                  //         Container(
-                                  //           width: MediaQuery.of(context)
-                                  //                   .size
-                                  //                   .width /
-                                  //               2.5,
-                                  //           height: 80,
-                                  //           child: TextFormField(
-                                  //             decoration: InputDecoration(
-                                  //               labelText:
-                                  //                   'Enter the Password ',
-                                  //               border: OutlineInputBorder(
-                                  //                 borderRadius:
-                                  //                     BorderRadius.all(
-                                  //                   Radius.circular(5),
-                                  //                 ),
-                                  //               ),
-                                  //             ),
-                                  //             onChanged: (value) {
-                                  //               setState(() {
-                                  //                 newvalue = value;
-                                  //               });
-                                  //             },
-                                  //           ),
-                                  //         ),
-                                  //         ElevatedButton(
-                                  //             onPressed: () {
-                                  //               setState(() {});
-                                  //               print(password);
-                                  //               print(newvalue);
-                                  //               password == newvalue
-                                  //                   ? Get.offAllNamed(
-                                  //                       HomeScreen1.routeName)
-                                  //                   : ScaffoldMessenger.of(
-                                  //                           context)
-                                  //                       .showSnackBar(
-                                  //                           const SnackBar(
-                                  //                               backgroundColor:
-                                  //                                   Colors.red,
-                                  //                               duration:
-                                  //                                   Duration(
-                                  //                                       seconds:
-                                  //                                           2),
-                                  //                               content: Text(
-                                  //                                 'Wrong Password',
-                                  //                                 style: TextStyle(
-                                  //                                     color: Colors
-                                  //                                         .white,
-                                  //                                     fontWeight:
-                                  //                                         FontWeight
-                                  //                                             .bold),
-                                  //                               )));
-                                  //             },
-                                  //             child: Text("Login")),
-                                  //       ],
-                                  //     ),
-                                  : Get.offAllNamed(HomeScreen1.routeName),
+                                  : _auth.getUser() == null
+                                      ? ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              backgroundColor: Colors.red,
+                                              duration: Duration(seconds: 2),
+                                              content: Text(
+                                                'Please Login First By Going Into Settings',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              )))
+                                      // : showDialog<String>(
+                                      //     context: context,
+                                      //     builder: (BuildContext context) =>
+                                      //         AlertDialog(
+                                      //       title: const Text(
+                                      //           "Enter the Password To Enter Child Mode"),
+                                      //       actionsPadding: EdgeInsets.all(20),
+                                      //       actions: <Widget>[
+                                      //         Container(
+                                      //           width: MediaQuery.of(context)
+                                      //                   .size
+                                      //                   .width /
+                                      //               2.5,
+                                      //           height: 80,
+                                      //           child: TextFormField(
+                                      //             decoration: InputDecoration(
+                                      //               labelText:
+                                      //                   'Enter the Password ',
+                                      //               border: OutlineInputBorder(
+                                      //                 borderRadius:
+                                      //                     BorderRadius.all(
+                                      //                   Radius.circular(5),
+                                      //                 ),
+                                      //               ),
+                                      //             ),
+                                      //             onChanged: (value) {
+                                      //               setState(() {
+                                      //                 newvalue = value;
+                                      //               });
+                                      //             },
+                                      //           ),
+                                      //         ),
+                                      //         ElevatedButton(
+                                      //             onPressed: () {
+                                      //               setState(() {});
+                                      //               print(password);
+                                      //               print(newvalue);
+                                      //               password == newvalue
+                                      //                   ? Get.offAllNamed(
+                                      //                       HomeScreen1.routeName)
+                                      //                   : ScaffoldMessenger.of(
+                                      //                           context)
+                                      //                       .showSnackBar(
+                                      //                           const SnackBar(
+                                      //                               backgroundColor:
+                                      //                                   Colors.red,
+                                      //                               duration:
+                                      //                                   Duration(
+                                      //                                       seconds:
+                                      //                                           2),
+                                      //                               content: Text(
+                                      //                                 'Wrong Password',
+                                      //                                 style: TextStyle(
+                                      //                                     color: Colors
+                                      //                                         .white,
+                                      //                                     fontWeight:
+                                      //                                         FontWeight
+                                      //                                             .bold),
+                                      //                               )));
+                                      //             },
+                                      //             child: Text("Login")),
+                                      //       ],
+                                      //     ),
+                                      : Get.offAllNamed(HomeScreen1.routeName),
                           child: Image(
                             image: AssetImage('assets/images/child_login.png'),
                             width: 40,
