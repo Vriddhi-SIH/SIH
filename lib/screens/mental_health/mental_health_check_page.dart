@@ -24,7 +24,7 @@ class _MentalHealthPageState extends State<MentalHealthPage> {
   Widget build(BuildContext context) {
     return Material(
         child: Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[200],
       body: Column(
         children: [
           SizedBox(
@@ -33,9 +33,8 @@ class _MentalHealthPageState extends State<MentalHealthPage> {
           Text(
             "Mental Health Check",
             style: TextStyle(
-                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.red),
+                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
           ),
-          Text("Pull Down To Refresh"),
           Expanded(
             child: LiquidPullToRefresh(
               color: Colors.redAccent,
@@ -56,28 +55,33 @@ class _MentalHealthPageState extends State<MentalHealthPage> {
                                     index2: index,
                                   )));
                         },
-                        child: Card(
-                          color: Colors.grey[200],
-                          elevation: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  " ${productController.productData[index].title}",
-                                  style: st(Colors.red),
-                                  textAlign: TextAlign.justify,
+                        child: Container(
+                          height: 120,
+                          child: Center(
+                            child: Card(
+                              color: Colors.white,
+                              elevation: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      " ${productController.productData[index].title}",
+                                      style: st(Colors.black),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Text(
+                                      "${productController.productData[index].description}",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(255, 100, 100, 1),
+                                        fontSize: 15,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  "${productController.productData[index].description}",
-                                  style: TextStyle(
-                                    color: Colors.orange,
-                                    fontSize: 15,
-                                  ),
-                                  textAlign: TextAlign.justify,
-                                ),
-                              ],
+                              ),
                             ),
                           ),
                         ),

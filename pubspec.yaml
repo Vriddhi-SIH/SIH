@@ -63,6 +63,7 @@ dependencies:
   # Used together with json_serializable to generate fromJson/toJson functions
   json_annotation: ^4.5.0
   syncfusion_flutter_charts: ^20.2.45
+  tutorial: ^1.0.9
   # firebase_mlkit_language: ^1.1.3
 
  

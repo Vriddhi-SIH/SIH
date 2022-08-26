@@ -1050,6 +1050,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.6"
+  tutorial:
+    dependency: "direct main"
+    description:
+      name: tutorial
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.9"
   typed_data:
     dependency: transitive
     description:

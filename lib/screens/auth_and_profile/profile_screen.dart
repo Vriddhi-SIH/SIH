@@ -24,7 +24,12 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenState extends State<ProfileScreen>
+    with TickerProviderStateMixin {
+  ScrollController scrollController = ScrollController(
+    initialScrollOffset: 10, // or whatever offset you wish
+    keepScrollOffset: true,
+  );
   bool loading = true;
   final contro = Get.put(PieChartController());
   late SharedPreferences _prefs;
@@ -236,13 +241,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '1000';
+        text = '100';
         break;
       case 3:
-        text = '2000';
+        text = '200';
         break;
       case 5:
-        text = '3000';
+        text = '300';
         break;
       default:
         return Container();
@@ -254,6 +259,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final AuthController _auth = Get.find<AuthController>();
+    TabController tabcontoller = TabController(length: 4, vsync: this);
     final controllerw = Get.put(ProfileController());
     return WillPopScope(
       onWillPop: () async {
@@ -264,7 +270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Material(
         child: Scaffold(
           body: Container(
-            color: Colors.grey[100],
+            color: Colors.grey[200],
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,103 +328,395 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 5, 0, 0),
-                    child: Text(
-                      "Coginitive Devlopment Chart",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(2, 0, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(30, 5, 30, 5),
                     child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white),
+                      height: 150,
                       width: MediaQuery.of(context).size.width,
-                      height: 200,
-                      child: LineChart(
-                        LineChartData(
-                          gridData: FlGridData(
-                            // show: true,
-                            // drawVerticalLine: true,
-                            horizontalInterval: 200,
-                            verticalInterval: 1,
-                            getDrawingHorizontalLine: (value) {
-                              return FlLine(
-                                color: const Color(0xff37434d),
-                                strokeWidth: 1,
-                              );
-                            },
-                            getDrawingVerticalLine: (value) {
-                              return FlLine(
-                                color: const Color(0xff37434d),
-                                strokeWidth: 1,
-                              );
-                            },
-                          ),
-                          titlesData: FlTitlesData(
-                            show: true,
-                            rightTitles: AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
-                            ),
-                            topTitles: AxisTitles(
-                              sideTitles: SideTitles(showTitles: false),
-                            ),
-                            bottomTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                reservedSize: 30,
-                                interval: 1,
-                                getTitlesWidget: bottomTitleWidgets,
-                              ),
-                            ),
-                            leftTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                interval: 1,
-                                getTitlesWidget: leftTitleWidgets,
-                                reservedSize: 30,
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(20, 5, 0, 0),
+                              child: Text(
+                                "Badges",
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
-                          borderData: FlBorderData(
-                              show: true,
-                              border: Border.all(
-                                  color: const Color(0xff37434d), width: 1)),
-                          minX: 24,
-                          maxX: 34,
-                          minY: 0,
-                          maxY: 2000,
-                          lineBarsData: [
-                            LineChartBarData(
-                              spots: data2,
-                              // isCurved: true,
-
-                              gradient: LinearGradient(
-                                colors: gradientColors,
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                              ),
-                              barWidth: 5,
-                              // isStrokeCapRound: true,
-                              dotData: FlDotData(
-                                show: true,
-                              ),
-                              belowBarData: BarAreaData(
-                                show: true,
-                                gradient: LinearGradient(
-                                  colors: gradientColors
-                                      .map((color) => color.withOpacity(0.3))
-                                      .toList(),
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    child: Column(children: [
+                                      CircleAvatar(
+                                          radius: 30,
+                                          backgroundColor: Colors.white,
+                                          child: Image.asset(
+                                              'assets/images/badge4.png')),
+                                      Text("5 Star"),
+                                    ]),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Container(
+                                    child: Column(children: [
+                                      CircleAvatar(
+                                          radius: 30,
+                                          backgroundColor: Colors.white,
+                                          child: Image.asset(
+                                              'assets/images/badge3.png')),
+                                      Text("5 Star"),
+                                    ]),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Container(
+                                    child: Column(children: [
+                                      CircleAvatar(
+                                          radius: 30,
+                                          backgroundColor: Colors.white,
+                                          child: Image.asset(
+                                              'assets/images/badge1.png')),
+                                      Text("5 Star"),
+                                    ]),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Container(
+                                    child: Column(children: [
+                                      CircleAvatar(
+                                          radius: 30,
+                                          backgroundColor: Colors.white,
+                                          child: Image.asset(
+                                              'assets/images/badge2.png')),
+                                      Text("5 Star"),
+                                    ]),
+                                  )
+                                ]),
+                          ),
+                        ],
                       ),
                     ),
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Stats",
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Container(
+                                  child: TabBar(
+                                      unselectedLabelColor: Colors.black,
+                                      indicatorSize: TabBarIndicatorSize.label,
+                                      labelColor: Colors.black,
+                                      controller: tabcontoller,
+                                      indicator: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(width: 1)),
+                                      ),
+                                      isScrollable: true,
+                                      // labelPadding: const EdgeInsets.all(10),
+                                      labelPadding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      automaticIndicatorColorAdjustment: true,
+                                      tabs: [
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(9.0),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: Text("Daily"),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(9.0),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: Text("Weekly"),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(10.0),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: Text("Monthly"),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(9.0),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: Text("LongTerm"),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 600,
+                            child: Expanded(
+                              child: TabBarView(
+                                  controller: tabcontoller,
+                                  children: [
+                                    Container(
+                                      height: 100,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: Center(
+                                          child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 50,
+                                                  ),
+                                                  Container(
+                                                    width: 120,
+                                                    height: 120,
+                                                    child: Image.asset(
+                                                        'assets/images/abcd.png'),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "4 Tests",
+                                                    style:
+                                                        TextStyle(fontSize: 25),
+                                                  )
+                                                ],
+                                              ),
+                                              Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 50,
+                                                  ),
+                                                  Container(
+                                                    width: 120,
+                                                    height: 120,
+                                                    child: Image.asset(
+                                                        'assets/images/abcde.png'),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    "4 Tests",
+                                                    style:
+                                                        TextStyle(fontSize: 25),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                4, 5, 30, 0),
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 200,
+                                              child: LineChart(
+                                                LineChartData(
+                                                  backgroundColor: Colors.black,
+                                                  gridData: FlGridData(
+                                                    show: true,
+                                                    drawVerticalLine: true,
+                                                    horizontalInterval: 1,
+                                                    verticalInterval: 1,
+                                                    getDrawingHorizontalLine:
+                                                        (value) {
+                                                      return FlLine(
+                                                        color: const Color(
+                                                            0xff37434d),
+                                                        strokeWidth: 0.1,
+                                                      );
+                                                    },
+                                                    getDrawingVerticalLine:
+                                                        (value) {
+                                                      return FlLine(
+                                                        color: const Color(
+                                                            0xff37434d),
+                                                        strokeWidth: 0.1,
+                                                      );
+                                                    },
+                                                  ),
+                                                  titlesData: FlTitlesData(
+                                                    show: true,
+                                                    rightTitles: AxisTitles(
+                                                      sideTitles: SideTitles(
+                                                          showTitles: false),
+                                                    ),
+                                                    topTitles: AxisTitles(
+                                                      sideTitles: SideTitles(
+                                                          showTitles: false),
+                                                    ),
+                                                    bottomTitles: AxisTitles(
+                                                      sideTitles: SideTitles(
+                                                        showTitles: true,
+                                                        reservedSize: 30,
+                                                        interval: 1,
+                                                        getTitlesWidget:
+                                                            bottomTitleWidgets,
+                                                      ),
+                                                    ),
+                                                    leftTitles: AxisTitles(
+                                                      sideTitles: SideTitles(
+                                                        showTitles: true,
+                                                        interval: 1,
+                                                        getTitlesWidget:
+                                                            leftTitleWidgets,
+                                                        reservedSize: 42,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  borderData: FlBorderData(
+                                                      show: true,
+                                                      border: Border.all(
+                                                          color: const Color(
+                                                              0xff37434d),
+                                                          width: 1)),
+                                                  minX: 0,
+                                                  maxX: 11,
+                                                  minY: 0,
+                                                  maxY: 6,
+                                                  lineBarsData: [
+                                                    LineChartBarData(
+                                                      spots: const [
+                                                        FlSpot(0, 3),
+                                                        FlSpot(2.6, 2),
+                                                        FlSpot(4.9, 5),
+                                                        FlSpot(6.8, 3.1),
+                                                        FlSpot(8, 4),
+                                                        FlSpot(9.5, 3),
+                                                        FlSpot(11, 4),
+                                                      ],
+                                                      isCurved: true,
+                                                      gradient: LinearGradient(
+                                                        colors: gradientColors,
+                                                        begin: Alignment
+                                                            .centerLeft,
+                                                        end: Alignment
+                                                            .centerRight,
+                                                      ),
+                                                      barWidth: 5,
+                                                      isStrokeCapRound: true,
+                                                      dotData: FlDotData(
+                                                        show: false,
+                                                      ),
+                                                      belowBarData: BarAreaData(
+                                                        show: true,
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: gradientColors
+                                                              .map((color) => color
+                                                                  .withOpacity(
+                                                                      0.3))
+                                                              .toList(),
+                                                          begin: Alignment
+                                                              .centerLeft,
+                                                          end: Alignment
+                                                              .centerRight,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                    ),
+                                    Container(
+                                      height: 100,
+                                      child: Center(child: Text("hello World")),
+                                    ),
+                                    Container(
+                                      height: 100,
+                                      child: Center(child: Text("hello World")),
+                                    ),
+                                    Container(
+                                      height: 100,
+                                      child: Center(child: Text("hello World")),
+                                    )
+                                  ]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
                   SizedBox(
                     height: 10,
                   ),
