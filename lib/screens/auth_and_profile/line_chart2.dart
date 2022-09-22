@@ -1,14 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class LineChart2 extends StatefulWidget {
-  LineChart2({Key? key}) : super(key: key);
+class LineChart3 extends StatefulWidget {
+  LineChart3({Key? key}) : super(key: key);
 
   @override
-  State<LineChart2> createState() => _LineChart2State();
+  State<LineChart3> createState() => _LineChart3State();
 }
 
-class _LineChart2State extends State<LineChart2> {
+class _LineChart3State extends State<LineChart3> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Color(0xff68737d),
@@ -63,8 +63,8 @@ class _LineChart2State extends State<LineChart2> {
   }
 
   List<Color> gradientColors = [
-    Color.fromARGB(255, 230, 224, 35),
-    Color.fromARGB(255, 219, 239, 43),
+    Color.fromARGB(255, 230, 35, 77),
+    Color.fromARGB(255, 211, 2, 166),
   ];
 
   @override
@@ -129,10 +129,10 @@ class _LineChart2State extends State<LineChart2> {
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 2.3),
-            FlSpot(2, 4.5),
-            FlSpot(4, 5.2),
-            FlSpot(6, 3.2),
+            FlSpot(0, 3),
+            FlSpot(2.6, 2),
+            FlSpot(4.9, 5),
+            FlSpot(6.8, 3.1),
             FlSpot(8, 4),
             FlSpot(9.5, 3),
             FlSpot(11, 4),
