@@ -189,10 +189,11 @@ class _HomeScreenState extends State<HomeScreen> {
     } else {
       childName = value;
     }
+    setState(() {});
 
     await Future.delayed(Duration(seconds: 1));
 
-    setState(() {});
+    //
   }
 
   retrieveStringValue3() async {
