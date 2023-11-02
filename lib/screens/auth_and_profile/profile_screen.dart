@@ -10,11 +10,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sih_2022/configs/configs.dart';
 import 'package:sih_2022/controllers/article/piechart_controller.dart';
 import 'package:sih_2022/controllers/controllers.dart';
+import 'package:sih_2022/screens/auth_and_profile/line_chart.dart';
 import 'package:sih_2022/screens/screens.dart';
 import 'package:sih_2022/widgets/widgets.dart';
 
 import '../../controllers/common/translator.dart';
-import 'line_chart.dart';
+import 'line_chart2.dart';
+
 // import '../physical_health/lib/data/line_titles.dart';
 
 //
@@ -451,6 +453,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
                     child: Container(
+                      height: 1200,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
@@ -550,7 +553,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             ),
                           ),
                           Container(
-                            height: 680,
+                            height: 900,
                             child: Expanded(
                               child: TabBarView(
                                   controller: tabcontoller,
@@ -793,14 +796,51 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       )),
                                     ),
                                     Container(
-                                      height: 100,
-                                      child: Center(child: Text("hello World")),
+                                      // height: 100,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10, 0, 0, 0),
+                                        child: Image.asset(
+                                          'assets/images/Group 4720.png',
+                                        ),
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          2, 200, 2, 0),
-                                      child: Container(
-                                          height: 50, child: LineChart2()),
+                                          2, 10, 2, 0),
+                                      child: Column(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text("Cognitive",
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            height: 400,
+                                            child: LineChart3(),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text("Psychomotor",
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
+                                          Container(
+                                            height: 360,
+                                            child: LineChart2(),
+                                          ),
+
+                                          // Text("hello World"),
+                                        ],
+                                      ),
                                     ),
                                     Container(
                                       height: 100,

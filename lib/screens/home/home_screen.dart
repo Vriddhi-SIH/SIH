@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, sized_box_for_whitespace, avoid_print, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-
+import 'package:tutorial/tutorial.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -93,6 +93,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final keyMenu = GlobalKey();
+  final keyContainer = GlobalKey();
+  final keyChat = GlobalKey();
+  final geyChat = GlobalKey();
+  // List<TutorialItem> itens = [];
+
   // List list = [
   //   {"url": "assets/images/meditate.png", "x": 2, "y": 2},
   //   {"url": "assets/images/meditate.png", "x": 1, "y": 1},
@@ -183,10 +189,11 @@ class _HomeScreenState extends State<HomeScreen> {
     } else {
       childName = value;
     }
+    setState(() {});
 
     await Future.delayed(Duration(seconds: 1));
 
-    setState(() {});
+    //
   }
 
   retrieveStringValue3() async {
@@ -1143,9 +1150,11 @@ class _HomeScreenState extends State<HomeScreen> {
     //       top: 200,
     //       left: 50,
     //       children: [
-    //         Text(
-    //           "xfxfbdfhdfhfghfgjfgj",
-    //           style: TextStyle(color: Colors.white, fontSize: 20),
+    //         Center(
+    //           child: Text(
+    //             "Hello Welcome to App",
+    //             style: TextStyle(color: Colors.white, fontSize: 32),
+    //           ),
     //         ),
     //         SizedBox(
     //           height: 100,
@@ -1156,6 +1165,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //         style: TextStyle(
     //           color: Colors.purple,
     //           fontWeight: FontWeight.bold,
+    //           fontSize: 27,
     //         ),
     //       ),
     //       shapeFocus: ShapeFocus.oval),
@@ -1166,8 +1176,8 @@ class _HomeScreenState extends State<HomeScreen> {
     //     left: 50,
     //     children: [
     //       Text(
-    //         "cxcbfcfndgncgnvn",
-    //         style: TextStyle(color: Colors.white, fontSize: 20),
+    //         "Takes you to the article page",
+    //         style: const TextStyle(color: Colors.white, fontSize: 32),
     //       ),
     //       SizedBox(
     //         height: 100,
@@ -1178,6 +1188,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //       style: TextStyle(
     //         color: Colors.purple,
     //         fontWeight: FontWeight.bold,
+    //         fontSize: 27,
     //       ),
     //     ),
     //     shapeFocus: ShapeFocus.oval,
@@ -1185,8 +1196,8 @@ class _HomeScreenState extends State<HomeScreen> {
     //   TutorialItem(
     //     globalKey: keyContainer,
     //     touchScreen: true,
-    //     bottom: 50,
-    //     left: 50,
+    //     bottom: 150,
+    //     left: 280,
     //     children: [
     //       Text(
     //         "3",
@@ -1201,12 +1212,38 @@ class _HomeScreenState extends State<HomeScreen> {
     //       style: TextStyle(
     //         color: Colors.purple,
     //         fontWeight: FontWeight.bold,
+    //         fontSize: 27,
     //       ),
     //     ),
     //     shapeFocus: ShapeFocus.square,
     //   ),
+    //   TutorialItem(
+    //     globalKey: geyChat,
+    //     touchScreen: true,
+    //     top: 200,
+    //     left: 50,
+    //     children: [
+    //       Text(
+    //         "Want to interact with child",
+    //         style: TextStyle(color: Colors.white, fontSize: 20),
+    //       ),
+    //       SizedBox(
+    //         height: 100,
+    //       )
+    //     ],
+    //     widgetNext: Text(
+    //       "Next",
+    //       style: TextStyle(
+    //         color: Colors.purple,
+    //         fontWeight: FontWeight.bold,
+    //         fontSize: 27,
+    //       ),
+    //     ),
+    //     shapeFocus: ShapeFocus.oval,
+    //   ),
     // });
 
+    // ///FUNÇÃO QUE EXIBE O TUTORIAL.
     // Future.delayed(Duration(microseconds: 200)).then((value) {
     //   Tutorial.showTutorial(context, itens);
     // });
@@ -1267,6 +1304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icon(
                     Iconsax.people,
                     size: 30,
+                    // key: keyMenu,
                   ),
                   label: trans2[24],
                 ),
@@ -1275,6 +1313,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icon(
                     Iconsax.personalcard,
                     size: 30,
+                    // key: keyContainer,
                   ),
                   label: trans2[25],
                 ),

@@ -63,8 +63,8 @@ class _LineChart2State extends State<LineChart2> {
   }
 
   List<Color> gradientColors = [
-    const Color(0xff23b6e6),
-    const Color(0xff02d39a),
+    Color.fromARGB(255, 230, 224, 35),
+    Color.fromARGB(255, 219, 239, 43),
   ];
 
   @override
@@ -129,10 +129,10 @@ class _LineChart2State extends State<LineChart2> {
       lineBarsData: [
         LineChartBarData(
           spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
+            FlSpot(0, 2.3),
+            FlSpot(2, 4.5),
+            FlSpot(4, 5.2),
+            FlSpot(6, 3.2),
             FlSpot(8, 4),
             FlSpot(9.5, 3),
             FlSpot(11, 4),

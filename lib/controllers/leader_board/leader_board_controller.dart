@@ -31,6 +31,7 @@ class LeaderBoardController extends GetxController {
       }
 
       leaderBoard.assignAll(allData);
+
       loadingStatus.value = LoadingStatus.completed;
     } catch (e) {
       loadingStatus.value = LoadingStatus.error;

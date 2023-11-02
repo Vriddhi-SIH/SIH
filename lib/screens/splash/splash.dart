@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Image(
         image: AssetImage("assets/images/Loader1.jpeg"),
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
       ),
     );
   }

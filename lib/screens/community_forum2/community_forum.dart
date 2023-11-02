@@ -4,9 +4,6 @@ import 'package:sih_2022/screens/community_forum2/article_section.dart';
 import 'package:sih_2022/screens/community_forum2/communitynext.dart';
 import 'package:sih_2022/screens/community_forum2/list1.dart';
 import 'package:sih_2022/screens/community_forum2/postquestion.dart';
-
-import '../../controllers/auth_controller.dart';
-import '../../controllers/timeline/timeline_controller.dart';
 import '../home/home_screen.dart';
 
 class Community_Forum extends StatefulWidget {
